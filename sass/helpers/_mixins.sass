@@ -1,0 +1,31 @@
+/// @param (screen name)
+/// takes one param and check it
+@mixin media($screen)
+  @if ($screen == mobile)
+    @media (max-width:767px)
+      @content
+  @else if ($screen == tablet)
+    @media (min-width:768px) and (max-width:993px)
+      @content
+  @else if ($screen == wide)
+    @media (min-width:1200px)
+      @content
+  @else
+    @error "this screen #{$screen} name is invalid"
+
+/// @param(pseudo-element, content, position, dimensions...)
+/// create a "pseudo-element" 
+@mixin pseudo($elem:"before",$content: "",$pos: "absolute",$top: 0,$right: 0,$bottom: 0,$left: 0)
+  /// add poisition relative in the parent element 
+  position: relative
+  /// creating a pseudo class
+  &::#{$elem}
+    content: $content
+    position: $pos
+    top: $top
+    right: $right
+    bottom: $bottom
+    left: $left
+
+@mixin overlay($color,$opacity)
+  background-color: rgba($color,$opacity)
