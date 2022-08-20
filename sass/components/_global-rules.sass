@@ -1,14 +1,15 @@
 @use "../components/_colors" as *
 // Start Global Rules
 :root
-  // to make rem unit 10 based unit to calculate it easier
+  // to make rem unit 10 based unit  to calculate it easier
   font-size: 62.5%
-  --clr-bright: #{$clr-bright}
-  --clr-dark: #{$clr-dark}
   --base-transition: 400ms
+  @each $name,$clr in $colors
+    --#{$name} : #{$clr}
 body 
   font-size: 1.6rem
   font-family: 'Open Sans', sans-serif
+  background-color: var(--clr-dark)
 *
   box-sizing: border-box
   padding: 0

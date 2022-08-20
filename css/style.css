@@ -1,112 +1,20 @@
-:root {
-  font-size: 62.5%;
-  --clr-bright: #fff;
-  --clr-dark: #000;
-  --base-transition: 400ms;
-}
+/* Error: expected newline.
+ *   ,
+ * 8 | $secondary-100: "secondary" : hsl(188, 61%, 50%)
+ *   |                             ^
+ *   '
+ *   sass/components/_colors.sass 8:29       @use
+ *   sass/components/_global-rules.sass 1:1  @forward
+ *   sass/_index.sass 2:1                    @use
+ *   sass/style.sass 1:1                     root stylesheet */
 
-body {
-  font-size: 1.6rem;
-  font-family: "Open Sans", sans-serif;
-}
-
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-button {
-  border: none;
-}
-
-img {
-  max-width: 100%;
-}
-
-.container {
-  padding-left: 15px;
-  padding-right: 15px;
-  width: 100%;
-  margin: 0 auto;
-}
-@media (min-width: 768px) {
-  .container {
-    width: 750px;
-    padding: 0;
-  }
-}
-@media (min-width: 1200px) {
-  .container {
-    width: 1170px;
-  }
-}
-
-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-}
-header .nav-links {
-  list-style: none;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: var(--clr-bright);
-}
-header .nav-links .nav-link {
+body::before {
+  font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
+      "Droid Sans Mono", monospace, monospace;
+  white-space: pre;
   display: block;
-  padding: 15px;
-  margin-right: 15px;
-  transition: var(--base-transition);
-  font-weight: 600;
+  padding: 1em;
+  margin-bottom: 1em;
+  border-bottom: 2px solid black;
+  content: 'Error: expected newline.\a   \2577 \a 8 \2502  $secondary-100: "secondary" : hsl(188, 61%, 50%)\a   \2502                              ^\a   \2575 \a   sass/components/_colors.sass 8:29       @use\a   sass/components/_global-rules.sass 1:1  @forward\a   sass/_index.sass 2:1                    @use\a   sass/style.sass 1:1                     root stylesheet';
 }
-header .nav-links .nav-link:hover, header .nav-links .nav-link:focus {
-  color: var(--main-color, #fabafe);
-}
-@media (max-width: 767px) {
-  header .nav-links {
-    flex-direction: column;
-    align-items: flex-start;
-    position: absolute;
-    right: 0;
-    top: 100%;
-    width: 250px;
-    background-color: black;
-    border-radius: 15px 0 0 15px;
-  }
-  header .nav-links .nav-link {
-    margin: 15px 0;
-    padding-left: 20px;
-    padding-right: 0;
-  }
-  header .nav-links .nav-link:not(:last-child) {
-    border-bottom: 1px solid var(--main-color, white);
-    color: green;
-    background-color: red;
-  }
-}
-header .menu {
-  width: 35px;
-  height: 35px;
-  position: absolute;
-  right: 5px;
-  top: 5px;
-  background-color: #fff;
-  display: flex;
-  justify-content: center;
-  z-index: 3;
-  padding: 3px;
-}
-header .menu img {
-  max-height: 100%;
-  max-width: 100%;
-}
-
-/*# sourceMappingURL=style.css.map */

@@ -4,6 +4,9 @@
   @if ($screen == mobile)
     @media (max-width:767px)
       @content
+  @else if ($screen == "min-mobile")
+    @media (min-width:768px)
+      @content
   @else if ($screen == tablet)
     @media (min-width:768px) and (max-width:993px)
       @content
@@ -15,7 +18,7 @@
 
 /// @param(pseudo-element, content, position, dimensions...)
 /// create a "pseudo-element" 
-@mixin pseudo($elem:"before",$content: "",$pos: "absolute",$top: 0,$right: 0,$bottom: 0,$left: 0)
+@mixin pseudo($elem:"before",$content: "",$pos: absolute,$top: 0,$right: 0,$bottom: 0,$left: 0)
   /// add poisition relative in the parent element 
   position: relative
   /// creating a pseudo class
@@ -26,6 +29,20 @@
     right: $right
     bottom: $bottom
     left: $left
+    @content
 
 @mixin overlay($color,$opacity)
   background-color: rgba($color,$opacity)
+
+// fill animation 
+@mixin fillAnim($color,$opacity)
+  &
+    z-index: 1
+  @include pseudo()
+    @include overlay($color,$opacity)
+    transition: var(--base-transition,400ms)
+    transform: scaleX(0)
+    transform-origin: left
+    z-index: -1
+  &:hover::before
+    transform: scaleX(1)

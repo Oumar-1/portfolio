@@ -2,15 +2,19 @@
 header
   position: fixed
   top: 0
-  left: 0
+  left: 50%
+  transform: translateX(-50%)
   width: 100%
-  // @include overlay(black,0.6)
+  transition: transform var(--base-transition)
+  &.hide
+    transform: translate(-50%,-100%)
   .nav-links
     list-style: none
     display: flex
     justify-content: center
     align-items: center
     color: var(--clr-bright)
+    background-color: var(--secondary-clr)
     .nav-link
       display: block
       padding: 15px
@@ -19,36 +23,65 @@ header
       font-weight: 600
       &:hover,
       &:focus
-        color: var(--main-color,#fabafe)
-    @include media(mobile)
-      flex-direction: column
-      align-items: flex-start
-      position: absolute
-      right: 0
-      top: 100%
-      width: 250px
-      background-color: black
-      border-radius: 15px 0 0 15px
-      // display: none
-      .nav-link
-        margin: 15px 0
-        padding-left: 20px
-        padding-right: 0
-        &:not(:last-child)
-          border-bottom: 1px solid var(--main-color,white)
-          color: green
-          background-color: red
+        color: var(--special-clr,#fafafa )
   .menu
     width: 35px
     height: 35px
     position: absolute
-    right: 5px
-    top: 5px
-    background-color: #fff
+    right: 3px
+    top: 43px
+    // @include overlay(#3e4041,0.4)
     display: flex
     justify-content: center
     z-index: 3
-    padding: 3px
+    padding: 4px
+    cursor: pointer
+    border-radius: 4px
     img
       max-height: 100%
-      max-width: 100%
+  .toggle
+    display: none
+    transform: translateY(-100%)
+    transition: transform var(--base-transition)
+    position: absolute
+    left: 0
+    top: 100%
+    width: 100%
+    text-align: center
+
+  // media quries
+  @include media(mobile)
+    .nav-links
+      flex-direction: column
+      align-items: flex-start
+      justify-content: flex-start
+      position: absolute
+      right: 0
+      top: 100%
+      width: 260px
+      height: 100vh
+      overflow-y: auto
+      border-radius: 15px 0 0 15px
+      padding-top: 40px
+      transition: transform var(--base-transition,400ms)
+      transform: translate(0%,40px)
+      &.hide
+        transform: translateX(calc( 100% + 30px))
+      li
+        width: 100%
+        @include fillAnim(#fff,0.05)
+        &:hover
+          border-bottom: 1px solid var(--special-clr,white)
+          .nav-link
+            padding-left: 28px
+      .nav-link
+        padding-left: 20px
+        padding-right: 0
+        display: block
+        width: 100%
+  @include media(min-mobile)
+    .menu
+      display: none
+    &.hide .toggle
+      display: block
+      transform: translateY(-7px)
