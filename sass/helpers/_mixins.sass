@@ -16,11 +16,11 @@
   @else
     @error "this screen #{$screen} name is invalid"
 
-/// @param(pseudo-element, content, position, dimensions...)
+/// @param(pseudo-element, content, position, dimensions..., parent-positon)
 /// create a "pseudo-element" 
-@mixin pseudo($elem:"before",$content: "",$pos: absolute,$top: 0,$right: 0,$bottom: 0,$left: 0)
+@mixin pseudo($elem:"before",$content: " ",$pos: absolute,$top: 0,$right: 0,$bottom: 0,$left: 0,$parent-pos: relative)
   /// add poisition relative in the parent element 
-  position: relative
+  position: $parent-pos
   /// creating a pseudo class
   &::#{$elem}
     content: $content
@@ -32,17 +32,26 @@
     @content
 
 @mixin overlay($color,$opacity)
+  position: absolute
+  top: 0
+  right: 0
+  bottom: 0
+  left: 0
   background-color: rgba($color,$opacity)
 
 // fill animation 
-@mixin fillAnim($color,$opacity)
+/// @param(overlay-color,opacity-of-color,underline , underline-color)
+/// make a fill animation affect 
+@mixin fillAnim($color,$opacity,$underline : false, $und-clr)
   &
     z-index: 1
   @include pseudo()
-    @include overlay($color,$opacity)
+    background-color: rgba($color,$opacity)
     transition: var(--base-transition,400ms)
     transform: scaleX(0)
     transform-origin: left
     z-index: -1
+    @if $underline  == true
+      border-bottom: 1px solid $und-clr
   &:hover::before
     transform: scaleX(1)

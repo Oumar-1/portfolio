@@ -1,87 +1,136 @@
 @use "../helpers/_mixins" as *
+// header
+//   position: fixed
+//   top: 0
+//   left: 50%
+//   transform: translateX(-50%)
+//   transition: transform var(--base-transition)
+//   &.hide
+//     transform: translate(-50%,-100%)
+//   .nav-links
+//     list-style: none
+//     display: flex
+//     justify-content: center
+//     align-items: center
+//     color: white
+//     background-color: var(--clr-secondary-800)
+//     .nav-link
+//       display: block
+//       padding: 15px
+//       margin-right: 15px
+//       transition: var(--base-transition)
+//       font-weight: 600
+//       &:hover,
+//       &:focus
+//         color: var(--clr-special-100,#fafafa )
+//   .menu
+//     width: 35px
+//     height: 35px
+//     position: absolute
+//     right: 3px
+//     top: 43px
+//     display: flex
+//     justify-content: center
+//     z-index: 3
+//     padding: 4px
+//     cursor: pointer
+//     border-radius: 4px
+//     img
+//       max-height: 100%
+//   // media quries
+//   @include media(mobile)
+
+//   @include media(min-mobile)
+//     .menu
+//       width: 100%
+//       cursor: default
+//       transform: translateY(5px)
+
 header
   position: fixed
-  top: 0
-  left: 50%
-  transform: translateX(-50%)
-  width: 100%
-  transition: transform var(--base-transition)
-  &.hide
-    transform: translate(-50%,-100%)
+  top: 15px
+  right: 0
+  left: unset
   .nav-links
-    list-style: none
     display: flex
-    justify-content: center
-    align-items: center
-    color: var(--clr-bright)
-    background-color: var(--secondary-clr)
-    .nav-link
-      display: block
-      padding: 15px
-      margin-right: 15px
-      transition: var(--base-transition)
-      font-weight: 600
+    flex-direction: column
+    list-style: none
+    border-radius: 10px 0 0 10px
+    padding-top: 50px
+    color: white
+    overflow: hidden
+    transition: transform var(--base-transition,400ms)
+    transform: translateX(0)
+    width: 260px
+    height: 80vh
+    background-color: var(--clr-secondary-800)
+    border:
+      left: 1px solid var(--clr-secondary-500)
+      top: 1px solid var(--clr-secondary-500)
+    @include pseudo()
+      border-radius: inherit
+      background-color: rgba(black,0.5)
+
+    &.hide
+      transform: translateX(260px)
+    li
+      @include fillAnim(#fff,0.05,true,var(--clr-secondary-300))
       &:hover,
       &:focus
-        color: var(--special-clr,#fafafa )
-  .menu
-    width: 35px
-    height: 35px
-    position: absolute
-    right: 3px
-    top: 43px
-    // @include overlay(#3e4041,0.4)
-    display: flex
-    justify-content: center
-    z-index: 3
-    padding: 4px
-    cursor: pointer
-    border-radius: 4px
-    img
-      max-height: 100%
-  .toggle
-    display: none
-    transform: translateY(-100%)
-    transition: transform var(--base-transition)
-    position: absolute
-    left: 0
-    top: 100%
-    width: 100%
-    text-align: center
-
-  // media quries
-  @include media(mobile)
-    .nav-links
-      flex-direction: column
-      align-items: flex-start
-      justify-content: flex-start
-      position: absolute
-      right: 0
-      top: 100%
-      width: 260px
-      height: 100vh
-      overflow-y: auto
-      border-radius: 15px 0 0 15px
-      padding-top: 40px
-      transition: transform var(--base-transition,400ms)
-      transform: translate(0%,40px)
-      &.hide
-        transform: translateX(calc( 100% + 30px))
-      li
-        width: 100%
-        @include fillAnim(#fff,0.05)
-        &:hover
-          border-bottom: 1px solid var(--special-clr,white)
-          .nav-link
-            padding-left: 28px
+        .nav-link
+          padding-left: 28px
+          color: var(--clr-special-100)
       .nav-link
-        padding-left: 20px
-        padding-right: 0
+        transition: var(--base-transition)
+        padding:
+          top: 15px
+          bottom: 15px
+          left: 20px
         display: block
         width: 100%
+  .menu
+    cursor: pointer
+    user-select: none
+    position: absolute
+    right: 5px
+    top: 5px
+    z-index: 3
+    img
+      width: 25px
+  // wide screens styling
   @include media(min-mobile)
-    .menu
-      display: none
-    &.hide .toggle
-      display: block
-      transform: translateY(-7px)
+    right: 50%
+    top: 0
+    transform: translateX(50%) 
+    .nav-links
+      border-radius: 0
+      width: 100%
+      flex-direction: row
+      padding: 15px
+      border: none
+      align-items: center
+      justify-content: center
+      height: fit-content
+      &.hide
+        margin-bottom: 50px
+      li 
+        text-align: center
+        &:not(:last-child)
+          margin-right: 30px
+        .nav-link
+          --pading: 10px 15px
+          padding: var(--pading)
+        &:hover
+          .nav-link
+            padding: var(--pading)
+        &::before
+          opacity: 0
+          display: none
+    .menu 
+      width: 100%
+      position: absolute
+      left: 0
+      top: 100%
+      text-align: center
+      img
+        width: 30px

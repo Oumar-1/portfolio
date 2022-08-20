@@ -4,12 +4,16 @@
   // to make rem unit 10 based unit  to calculate it easier
   font-size: 62.5%
   --base-transition: 400ms
-  @each $name,$clr in $colors
-    --#{$name} : #{$clr}
-body 
+  @each $color,$shades in $colors
+    @each $prop,$shade in $shades
+      --clr-#{$color}-#{$prop}: #{$shade}
+body
   font-size: 1.6rem
   font-family: 'Open Sans', sans-serif
-  background-color: var(--clr-dark)
+  background-color: var(--clr-primery-800)
+  // min-height: 400vh
+  // background-image: url("../imgs/unamed.png")
+  // background-size: contain
 *
   box-sizing: border-box
   padding: 0
@@ -19,10 +23,7 @@ a
   text-decoration: none
 button
   border: none
-img 
+img
   max-width: 100%
-
-
-
 
 // End Global Rules

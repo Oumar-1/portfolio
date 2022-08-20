@@ -1,13 +1,6 @@
-<svg width="24" height="24" data-name="arrow down" xmlns="http://www.w3.org/2000/svg">
-    <defs>
-        <clipPath id="a">
-            <path fill="none" stroke="#000" d="M0 0h24v24H0z"/>
-        </clipPath>
-    </defs>
-    <g data-name="20x20/arrow-back--grey">
-        <path data-name="Mask" fill="none" d="M0 24V0h24v24z"/>
-        <g data-name="20x20/arrow-back--grey" clip-path="url(#a)" transform="rotate(-90 12 12)">
-            <path d="m13.343 16.814-4.657-4.657L13.343 7.5" fill="none" stroke="#000" stroke-miterlimit="10" stroke-width="1.5" data-name="Group 2"/>
-        </g>
+<svg width="20" height="20" viewBox="2 0 20 20" xmlns="http://www.w3.org/2000/svg" fill="none">
+    <g stroke="#fff" data-name="20x20/arrow-back--grey" transform="rotate(-90 12 12)">
+        <path d="m13.343 16.814-4.657-4.657L13.343 7.5" stroke-miterlimit="10" stroke-width="1.5" data-name="Group 2"/>
     </g>
 </svg>
+
