@@ -148,6 +148,7 @@ header .menu img {
   header {
     right: 50%;
     top: 0;
+    transition: transform var(--base-transition);
     transform: translateX(50%);
   }
   header .nav-links {
@@ -161,7 +162,7 @@ header .menu img {
     height: fit-content;
   }
   header .nav-links.hide {
-    margin-bottom: 50px;
+    transform: translate(0);
   }
   header .nav-links li {
     text-align: center;
@@ -186,9 +187,13 @@ header .menu img {
     left: 0;
     top: 100%;
     text-align: center;
+    cursor: default;
   }
   header .menu img {
     width: 30px;
+  }
+  header.hide {
+    transform: translate(50%, -100%);
   }
 }
 

@@ -101,7 +101,8 @@ header
   @include media(min-mobile)
     right: 50%
     top: 0
-    transform: translateX(50%) 
+    transition: transform var(--base-transition)
+    transform: translateX(50%)
     .nav-links
       border-radius: 0
       width: 100%
@@ -112,8 +113,8 @@ header
       justify-content: center
       height: fit-content
       &.hide
-        margin-bottom: 50px
-      li 
+        transform: translate(0)
+      li
         text-align: center
         &:not(:last-child)
           margin-right: 30px
@@ -126,11 +127,14 @@ header
         &::before
           opacity: 0
           display: none
-    .menu 
+    .menu
       width: 100%
       position: absolute
       left: 0
       top: 100%
       text-align: center
+      cursor: default
       img
         width: 30px
+    &.hide
+      transform: translate(50%,-100%)
