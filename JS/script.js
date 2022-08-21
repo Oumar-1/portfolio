@@ -1,26 +1,26 @@
 const menu = document.querySelector(".menu");
-const navLinks = document.querySelector(".nav-links");
+const navLinksUl = document.querySelector(".nav-links");
+const navLinks = document.querySelectorAll(".nav-links li a");
 const header = document.querySelector("header");
 
-let headerCountDown = setTimeout(() => {})
+let headerCountDown = setTimeout(() => {
+  header.classList.add("hide");
+}, 4000);
 
-menu.addEventListener("click", () => {
-  navLinks.classList.toggle("hide");
-  if (window.innerWidth > 768) header.classList.toggle("hide");
-  
+header.addEventListener("mousemove", () => {
+  header.classList.remove("hide");
+  clearTimeout(headerCountDown);
 });
-menu.addEventListener("mouseenter", () => {
-  if (window.innerWidth > 768) {
-    header.classList.remove("hide");
-    clearTimeout(headerCountDown);
-
-  }
+menu.addEventListener("click", () => {
+  header.classList.add("hide");
+  navLinksUl.classList.toggle("hide");
 });
 menu.addEventListener("mouseleave", () => {
   headerCountDown = setTimeout(() => {
     header.classList.add("hide");
-  },3000)
-})
+  }, 2000);
+});
+
 function changeImg() {
   const img = document.querySelector(".menu img");
   let src1 = "../imgs/icons/menu.svg";
@@ -43,7 +43,16 @@ function changeClassOnResize(element, className, condition) {
   }
 }
 changeClassOnResize(header, "container", window.innerWidth > 768);
-// resize Event
+
+navLinks.forEach((link) => {
+  link.addEventListener("click", () => {
+    navLinksUl.classList.add("hide");
+    if (window.innerWidth > 768) {
+      header.classList.add("hide");
+    }
+  });
+});
+// Window Events
 window.addEventListener("resize", () => {
   changeImg();
   changeClassOnResize(header, "container", window.innerWidth > 768);
