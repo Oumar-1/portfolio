@@ -1,59 +1,78 @@
-const menu = document.querySelector(".menu");
-const navLinksUl = document.querySelector(".nav-links");
-const navLinks = document.querySelectorAll(".nav-links li a");
-const header = document.querySelector("header");
-
-let headerCountDown = setTimeout(() => {
-  header.classList.add("hide");
-}, 4000);
-
-header.addEventListener("mousemove", () => {
-  header.classList.remove("hide");
-  clearTimeout(headerCountDown);
-});
-menu.addEventListener("click", () => {
-  header.classList.add("hide");
-  navLinksUl.classList.toggle("hide");
-});
-menu.addEventListener("mouseleave", () => {
-  headerCountDown = setTimeout(() => {
-    header.classList.add("hide");
-  }, 2000);
-});
-
-function changeImg() {
-  const img = document.querySelector(".menu img");
-  let src1 = "../imgs/icons/menu.svg";
-  let src2 = "../imgs/icons/head-arrow-down.svg";
-
-  if (window.innerWidth < 768) {
-    if (location.origin + src1.slice(2) === img.src) return;
-    img.src = src1;
-  } else {
-    if (location.origin + src2.slice(2) === img.src) return;
-    img.src = src2;
+class Header {
+  constructor() {
+    this.navLinks = document.querySelectorAll(".nav-links li a");
+    this.header = document.querySelector("header");
+    this.nav = document.querySelector(".nav-links");
+    this.menu = document.querySelector(".menu");
+    this.menuImg = document.querySelector(".menu img");
+    this.menuImgSrc = [
+      "../imgs/icons/mob-menu.svg",
+      "../imgs/icons/monitor-menu.svg",
+    ];
+    this.countDown = setTimeout(() => {
+      this.header.classList.add("active");
+    }, 4000);
+    this.initial();
   }
-}
-changeImg();
-function changeClassOnResize(element, className, condition) {
-  if (condition) {
-    element.classList.add(className);
-  } else {
-    element.classList.remove(className);
+  initial() {
+    this.header.addEventListener("mouseenter", () => 
+      this.handleMouseEnter()
+    );
+    this.header.addEventListener("mouseleave", () => 
+      this.handleMouseLeave()
+    );
+    this.menu.addEventListener("click", () => this.handleMenuClick());
+    this.handleMenuClick();
+    this.updateOnResize();
+    this.handleLinksClick();
   }
-}
-changeClassOnResize(header, "container", window.innerWidth > 768);
 
-navLinks.forEach((link) => {
-  link.addEventListener("click", () => {
-    navLinksUl.classList.add("hide");
-    if (window.innerWidth > 768) {
-      header.classList.add("hide");
+  handleMouseEnter() {
+    if (window.innerWidth < 768) return;
+    clearTimeout(this.countDown);
+    this.header.classList.add("active");
+  }
+
+  handleMouseLeave() {
+    if (window.innerWidth < 768) return;
+    this.countDown = setTimeout(() => {
+      this.header.classList.remove("active");
+    }, 2000);
+  }
+
+  handleMenuClick() {
+    if (window.innerWidth < 768) {
+      this.nav.classList.toggle("active");
+    } else {
+      this.header.classList.toggle("active");
     }
-  });
-});
+  }
+
+  handleLinksClick() {
+    this.navLinks.forEach((link) => {
+      link.addEventListener("click", () => {
+        if (window.innerWidth > 768) {
+          this.header.classList.remove("active");
+          return;
+        }
+        nav.classList.remove("active");
+      });
+    });
+  }
+
+  updateOnResize() {
+    if (window.innerWidth > 768) {
+      this.menuImg.src = this.menuImgSrc[1];
+      this.header.classList.add("container");
+    } else {
+      this.menuImg.src = this.menuImgSrc[0];
+      this.header.classList.remove("container");
+    }
+  }
+}
+const header = new Header();
+
 // Window Events
 window.addEventListener("resize", () => {
-  changeImg();
-  changeClassOnResize(header, "container", window.innerWidth > 768);
+  header.updateOnResize();
 });
