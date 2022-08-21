@@ -191,6 +191,7 @@ header .menu img {
   }
   header .menu img {
     width: 30px;
+    cursor: pointer;
   }
   header.hide {
     transform: translate(50%, -100%);
