@@ -1,23 +1,24 @@
 @use "../helpers/_mixins" as *
-header
+.navbar
   position: fixed
   top: 15px
   right: 0
   transform: translate(0)
+  z-index: 100
   .nav-links
     --border-rad: 10px 0 0 10px
-    --pad: 50px
+    --pad: 40px
     display: flex
     flex-direction: column
     list-style: none
     border-radius: var(--border-rad)
-    padding-top: var(--pad)
-    color: white
+    padding: var(--pad) 0
+    color: var(--clr-primery-100)
     overflow: hidden
     transition: transform var(--base-transition,400ms)
     transform: translateX(0)
     width: 260px
-    height: 80vh
+    min-height: 80vh
     background-color: var(--clr-secondary-800)
     border:
       left: 1px solid var(--clr-secondary-500)
@@ -30,7 +31,7 @@ header
     &.active
       transform: translateX(0)
     li
-      @include fillAnim(#fff,0.05,true,var(--clr-secondary-300))
+      @include fillAnim(var(--clr-primery-100),0.05,true,var(--clr-secondary-300))
       &:hover,
       &:focus
         .nav-link
@@ -48,8 +49,8 @@ header
     cursor: pointer
     user-select: none
     position: absolute
-    right: 5px
-    top: 5px
+    right: 10px
+    top: 10px
     z-index: 3
     img
       width: 25px
@@ -63,6 +64,7 @@ header
       --border-rad: 0
       --pad: 15px
       padding: var(--pad)
+      min-height: unset
       width: 100%
       flex-direction: row
       border: none

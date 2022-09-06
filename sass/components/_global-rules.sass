@@ -1,5 +1,4 @@
 @use "../components/_colors" as *
-// Start Global Rules
 :root
   // to make rem unit 10 based unit  to calculate it easier
   font-size: 62.5%
@@ -11,13 +10,13 @@ body
   font-size: 1.6rem
   font-family: 'Open Sans', sans-serif
   background-color: var(--clr-primery-800)
-  // min-height: 400vh
-  // background-image: url("../imgs/unamed.png")
-  // background-size: contain
-*
+*,
+*::before,
+*::after 
   box-sizing: border-box
   padding: 0
   margin: 0
+
 a
   color: inherit
   text-decoration: none
@@ -26,4 +25,3 @@ button
 img
   max-width: 100%
 
-// End Global Rules

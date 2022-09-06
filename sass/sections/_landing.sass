@@ -1,0 +1,48 @@
+// import my last mixin
+@use "../helpers/_mixins" as *
+@import url('https://fonts.googleapis.com/css2?family=Changa:wght@300;400;500;600;700;800&display=swap')
+.landing
+  min-height: 100vh
+  text-align: center
+  padding: 0
+  position: relative
+  @include centerFlx()
+  #landing-canvas
+    position: absolute
+    left: 0
+    top: 0
+    width: 100%
+    height: 100%
+    z-index: -1
+    background-color: var(--clr-primery-800)
+  .info
+    h1
+      font-weight: 300
+      font-size: 4.5rem
+      text-transform: capitalize
+      font-family: "Changa" , "Helvetica" , "Arial" , "sans-serif"
+      padding: 0
+      margin-bottom: 0.3em
+      color: var(--clr-primery-100)
+      width: 100%
+      > span
+        color: var(--clr-secondary-100)
+        font-size: 1.4em
+        .welcome-animation
+          transform: translateY(0)
+          display: inline-block
+          animation: bouncing 1s 400ms
+
+      @include media(min-mobile)
+        font-size: 6rem
+
+    .short-discription
+      line-height: 1.8
+      max-width: 580px
+      margin: auto
+      font-size: 1.5rem
+      color: var(--clr-primery-200)
+      @include media(min-mobile)
+        font-size: 1.8rem
+      [data-my-age]
+        color: var(--clr-secondary-100)

@@ -55,3 +55,11 @@
       border-bottom: 1px solid $und-clr
   &:hover::before
     transform: scaleX(1)
+
+
+// center child element using display of flex
+
+@mixin centerFlx($justify : center, $align : center)
+  display: flex
+  justify-content: $justify
+  align-items: $align
