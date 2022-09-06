@@ -8,8 +8,6 @@
     <meta name="description" content="Oumar's Portfolio Website" />
     <title>My World</title>
     <!-- google fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,800;1,700&display=swap"
       rel="stylesheet"
@@ -18,26 +16,43 @@
     <link rel="stylesheet" href="css/normalize.css" />
     <link rel="stylesheet" href="css/style.css" />
   </head>
-  <body> 
-    <header>
+  <body>
+    <!-- navigation bar -->
+    <nav class="navbar">
+      <div class="menu">
+        <img src="imgs/icons/nav/mob-menu.svg" alt="menu toggle" />
       </div>
-        <div class="menu">
-          <img src="" alt="menu toggle">
+      <ul class="nav-links">
+        <li>
+          <a href="#home" class="nav-link">Home</a>
+        </li>
+        <li>
+          <a href="#about" class="nav-link">About</a>
+        </li>
+        <li>
+          <a href="#portfolio" class="nav-link">Portfolio</a>
+        </li>
+        <li>
+          <a href="#contact" class="nav-link">Contact-us</a>
+        </li>
+      </ul>
+    </nav>
+    <!-- Landing Section -->
+    <header class="landing">
+      <!-- particles canvas -->
+      <canvas id="landing-canvas"></canvas>
+      <div class="container">
+        <div class="info">
+          <h1>
+            <span>Hi <span class="welcome-animation">!</span></span> <br />
+            This is my World
+          </h1>
+          <p class="short-discription">
+            My name is Oumar I'm <span data-my-age></span> I live in Mecca,Saudi Arabia I'm self tought
+            Front-End Developer
+          </p>
         </div>
-        <ul class="nav-links">
-          <li>
-            <a href="#home" class="nav-link">Home</a>
-          </li>
-          <li>
-            <a href="#about" class="nav-link">About</a>
-          </li>
-          <li>
-            <a href="portfolio" class="nav-link">Portfolio</a>
-          </li>
-          <li>
-            <a href="#contact" class="nav-link">Contact-us</a>
-          </li>
-        </ul>
+      </div>
     </header>
     <script src="JS/script.js" defer type="module"></script>
   </body>
