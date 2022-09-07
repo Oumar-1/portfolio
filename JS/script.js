@@ -98,7 +98,6 @@ function scalableCanvas(canvas, parent) {
     canvas.height = parent.offsetHeight;
   });
 }
-
 class Particle {
   constructor(canvas, ctx, x, y, dirX, dirY, color, size, speed) {
     this.canvas = canvas;
@@ -124,35 +123,79 @@ class Particle {
 }
 
 function createParticles() {
-  particlesArray = [];
-  let x, y, dirX, dirY;
-
-  // generate randome number between two nums
-  let randomNum = (min, max) => Math.random() * max + min;
-
   // options for ease modifying
   const ballOptions = {
-    color: undefined,
-    maxSpeed: 0.5,
-    minSpeed: 0.1,
-    size: () => Math.random() * 5 + 1.5,
-    amount: 50,
+    color: "#32b9cd",
+    /*put undefined to genearate random color from the array of colors in the particle prototype*/
+    minSpeed: 1,
+    maxSpeed: 1,
+    size: () => Math.random() * 0.5 + 1.5,
+    amount: 100,
     bounce: true,
+    wait: false,
   };
   const connectOptions = {
     color: "#1e6f7b",
     width: 1,
-    connect: false,
+    connect: true,
     connectDistance: 80,
   };
 
+  // generate randome number between two nums
+  let randomNum = (min, max) => Math.random() * max + min;
+  initialParticles(ballOptions.amount);
+  // create particles loop
+  function initialParticles(amount) {
+    particlesArray = [];
+
+    let i = 1;
+    while (i <= amount) {
+      // i put this condition here instead of outside to give each particle unique position
+      let x,
+        y,
+        dirX,
+        dirY,
+        size = ballOptions.size();
+
+      if (ballOptions.bounce) {
+        x = Math.random() * landingCanvas.width;
+        y = Math.random() * landingCanvas.height;
+        dirX = Math.random() * 1 + -1;
+        dirY = Math.random() * 1 + -1;
+      } else {
+        x = Math.random() * landingCanvas.width;
+        y = landingCanvas.height + Math.random() * 500;
+        dirX = undefined;
+        dirY = 1;
+      }
+      // create the particles
+      particlesArray.push(
+        new Particle(
+          landingCanvas,
+          landingCtx,
+          x,
+          y + size * 2,
+          dirX,
+          dirY,
+          ballOptions.color,
+          ballOptions.size(),
+          randomNum(ballOptions.minSpeed, ballOptions.maxSpeed)
+        )
+      );
+      i++;
+    }
+  }
+
   // initial update method
   if (ballOptions.bounce) {
-    x = randomNum(0,Math.random() * landingCanvas.width);
-    y = randomNum(0,Math.random() * landingCanvas.height);
-    dirX = Math.random() * 1 + -1;
-    dirY = Math.random() * 1 + -1;
     Particle.prototype.update = function () {
+      if (
+        this.x + this.size >= this.canvas.height ||
+        this.x - this.size * 2 <= 0
+      ) {
+        this.dirX *= -1;
+        this.speed = randomNum(ballOptions.minSpeed, ballOptions.maxSpeed);
+      }
       if (
         this.y + this.size >= this.canvas.height ||
         this.y - this.size * 2 <= 0
@@ -164,37 +207,42 @@ function createParticles() {
       this.y += this.speed * this.dirY;
     };
   } else {
-    x = Math.random() * landingCanvas.width;
-    y = landingCanvas.height;
-    dirX = null;
-    dirY = 1;
     Particle.prototype.update = function () {
-      if (this.y - this.size >= this.canvas.height) {
+      if (this.y + this.size <= 0) {
         this.y = this.canvas.height + this.size;
-        this.speed = randomNum(0.3, 5);
+        this.x = Math.random() * this.canvas.width;
+        randomNum(ballOptions.minSpeed, ballOptions.maxSpeed);
       }
-      this.y += this.speed;
+      this.y -= this.speed;
     };
   }
 
-  let i = 1;
-  while (i <= ballOptions.amount) {
-    console.log(x,y)
-    particlesArray.push(
-      new Particle(
-        landingCanvas,
-        landingCtx,
-        x,
-        y,
-        dirX,
-        dirY,
-        ballOptions.color,
-        ballOptions.size(),
-        randomNum(ballOptions.maxSpeed, ballOptions.minSpeed)
-      )
-    );
-    i++;
+  function animation() {
+    if (ballOptions.wait) {
+      setTimeout(() => {
+        window.requestAnimationFrame(animation);
+      }, 3000);
+      ballOptions.wait = false;
+      particlesArray.forEach((particle) => {
+        particle.draw();
+      });
+      return;
+    }
+    // landingCtx.clearRect(0, 0, landingCanvas.width, landingCanvas.height);
+
+    landingCtx.beginPath();
+    landingCtx.rect(0, 0, landingCanvas.width, landingCanvas.height);
+    landingCtx.fillStyle = "rgba(0,0,0,0.15)";
+    landingCtx.fill();
+
+    particlesArray.forEach((particle) => {
+      particle.update();
+      particle.draw();
+    });
+
+    window.requestAnimationFrame(animation);
   }
+  animation();
 
   // connect particles methode
   function connectParticles() {
@@ -214,20 +262,7 @@ function createParticles() {
       });
     });
   }
-
-  function animation() {
-    landingCtx.clearRect(0, 0, landingCanvas.width, landingCanvas.height);
-    particlesArray.forEach((particle) => {
-      particle.update();
-      particle.draw();
-      if (connectOptions.connect) connectParticles();
-    });
-    window.requestAnimationFrame(animation);
-  }
-
-  animation();
 }
-
 createParticles();
 
 const appNavbar = new Navbar();
@@ -236,5 +271,4 @@ if (window.innerWidth > 768) appNavbar.navbar.classList.add("active");
 // Window Events
 window.addEventListener("resize", () => {
   appNavbar.updateOnResize();
-  createParticles();
 });
