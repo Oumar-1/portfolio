@@ -24,6 +24,7 @@ body {
   font-size: 1.6rem;
   font-family: "Open Sans", sans-serif;
   background-color: var(--clr-primery-800);
+  height: 800vh;
 }
 
 *,
@@ -217,7 +218,7 @@ img {
   justify-content: center;
   align-items: center;
 }
-.landing #landing-canvas {
+.landing #particles-js {
   position: absolute;
   left: 0;
   top: 0;
@@ -227,6 +228,7 @@ img {
   background-color: var(--clr-primery-800);
 }
 .landing .info h1 {
+  user-select: none;
   font-weight: 300;
   font-size: 4.5rem;
   text-transform: capitalize;
