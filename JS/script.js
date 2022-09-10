@@ -1,6 +1,4 @@
-particlesJS.load('particles-js', 'Json/particles.json', function() {
-  console.log('callback - particles.js config loaded');
-});
+particlesJS.load("particles-js", "Json/particles.json");
 class Navbar {
   constructor() {
     this.navLinks = document.querySelectorAll(".nav-links li a");
@@ -23,6 +21,7 @@ class Navbar {
     this.menu.addEventListener("click", () => this.handleMenuClick());
     this.updateOnResize();
     this.handleLinksClick();
+    
   }
 
   handleMouseEnter() {
@@ -70,7 +69,6 @@ class Navbar {
 class Landing {
   constructor() {
     this.section = document.querySelector(".landing");
-    this.printUserAge();
   }
   printUserAge() {
     const userAge = document.querySelector("[data-my-age]");
