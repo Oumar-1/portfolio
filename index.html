@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -15,6 +15,7 @@
     <!-- style sheet -->
     <link rel="stylesheet" href="css/normalize.css" />
     <link rel="stylesheet" href="css/style.css" />
+    <link rel="icon" type="image/x-icon" href="/imgs/icons/favicon.ico" />
   </head>
   <body>
     <!-- navigation bar -->
@@ -33,12 +34,12 @@
           <a href="#portfolio" class="nav-link">Portfolio</a>
         </li>
         <li>
-          <a href="#contact" class="nav-link">Contact-us</a>
+          <a href="#contact" class="nav-link">Contact-me</a>
         </li>
       </ul>
     </nav>
     <!-- Landing Section -->
-    <header class="landing">
+    <header class="landing" id="home">
       <!-- particles canvas -->
       <div id="particles-js"></div>
 
@@ -46,16 +47,47 @@
         <div class="info">
           <h1>
             <span>Hi <span class="welcome-animation">!</span></span> <br />
-            This is my World
+            Welcome To My World
           </h1>
-          <p class="short-discription">
-            My name is Oumar I'm <span data-my-age></span> I live in Mecca,Saudi
-            Arabia I'm self tought Front-End Developer
-          </p>
         </div>
       </div>
     </header>
-    <script defer src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+
+    <!-- about me Section -->
+    <section class="about" id="about">
+      <div class="container">
+        <div class="info">
+          <div class="my-img">
+            <picture>
+              <source
+                srcset="imgs/personal/author-desktop.png"
+                media="(min-width: 900px)"
+              />
+              <img
+                src="imgs/personal/author-mobile.png"
+                alt="the website owner image"
+                title="Oumar Moulay owner of the website"
+              />
+            </picture>
+          </div>
+            <p class="discription">
+              My name is <span class="special-clr">Oumar Moulay</span>
+              <br>
+              Self taught Front-End Developer
+              Living in Saudi Arabia
+              <br>
+              Originally from Mali 
+              <br>
+              
+            </p>
+        </div>
+        </div>
+      </div>
+    </section>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"
+    ></script>
     <script defer src="JS/script.js"></script>
   </body>
 </html>
