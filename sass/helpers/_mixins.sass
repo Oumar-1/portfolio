@@ -56,10 +56,14 @@
   &:hover::before
     transform: scaleX(1)
 
-
 // center child element using display of flex
 
 @mixin centerFlx($justify : center, $align : center)
   display: flex
   justify-content: $justify
   align-items: $align
+
+@mixin convertColorsToCssVariables($map,$color-name)
+  @each $color,$shades in $map
+    @each $key,$value in $shades
+      --#{$color-name}-#{$color}-#{$key}: #{$value}

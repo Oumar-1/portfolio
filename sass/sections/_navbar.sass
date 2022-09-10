@@ -19,14 +19,9 @@
     transform: translateX(0)
     width: 260px
     min-height: 80vh
-    background-color: var(--clr-secondary-800)
-    border:
-      left: 1px solid var(--clr-secondary-500)
-      top: 1px solid var(--clr-secondary-500)
+    background-color: var(--bg-main-700)
+    box-shadow: -15px 0 17px -17px var(--box-shadow-clr,black)
     transform: translatex(260px)
-    @include pseudo()
-      border-radius: inherit
-      background-color: rgba(black,0.5)
 
     &.active
       transform: translateX(0)
@@ -45,6 +40,7 @@
           left: 20px
         display: block
         width: 100%
+        transform: scale(1)
   .menu
     cursor: pointer
     user-select: none
@@ -67,7 +63,9 @@
       min-height: unset
       width: 100%
       flex-direction: row
-      border: none
+      box-shadow: 0px 15px 17px -17px var(--box-shadow-clr,black)
+      border-bottom-right-radius: 5px
+      border-bottom-left-radius: 5px
       align-items: center
       justify-content: center
       height: fit-content
