@@ -26,7 +26,7 @@
     background-color: var(--bg-main-700)
     box-shadow: -15px 0 17px -17px var(--box-shadow-clr,black)
     li
-      @include fillAnim(var(--clr-primery-100),0.05,true,var(--clr-secondary-300))
+      @include fillAnim(#0000,0.05,true,var(--clr-special-100))
 
       .nav-link
         transition: var(--base-transition)
@@ -46,6 +46,9 @@
     position: absolute
     right: 10px
     top: 10px
+    padding: 10px
+    box-sizing: content-box
+    padding-bottom: 0
     z-index: 3
     img
       width: 25px
@@ -69,24 +72,21 @@
       align-items: center
       justify-content: center
       li
-        text-align: center
         &:not(:last-child)
           margin-right: 30px
         .nav-link
           --pading: 10px 15px
           padding: var(--pading)
-        &:hover .nav-link
-          padding: var(--pading)
         &::before
           transform-origin: right
-          border-color: #eab543
     .menu
       width: 100%
+      padding: 0
       position: absolute
-      left: 0
       top: 100%
+      left: 0
       text-align: center
-      cursor: default
+      // cursor: default
       img
         width: 30px
         cursor: pointer
