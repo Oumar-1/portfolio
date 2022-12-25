@@ -1,6 +1,5 @@
 // import my last mixin
 @use "../helpers/_mixins" as *
-@import url('https://fonts.googleapis.com/css2?family=Changa:wght@300&display=swap')
 .landing
   min-height: 100vh
   text-align: center
@@ -19,19 +18,21 @@
       pointer-events: none
       user-select: none
       font-weight: 300
+      box-shadow: 0px 0px 13px -8px #2894a4 inset
+      border-radius: 4px
       font-size: 2.5rem
       text-transform: capitalize
-      font-family: "Changa" , "Helvetica" , "Arial" , "sans-serif"
-      padding: 0
-      margin: 0
+      font-family: "Helvetica" , "Arial" , "sans-serif"
+      padding: 15px
+      max-width: 750px
+      margin: auto
       color: var(--clr-primery-100)
       position: relative
       line-height: 1.2
       z-index: 2
       width: 100%
-      > span
-        color: var(--clr-secondary-100)
-        font-size: 1.4em
+      .skill
+        color: #BBDDE9
         .welcome-animation
           transform: translateY(0)
           display: inline-block
@@ -40,4 +41,4 @@
       @include media(min-mobile)
         font-size: 3.5rem
         font-family: Helvetica
-        padding-inline: 10px
+        padding: 30px
