@@ -1,0 +1,14 @@
+@use "../helpers/_mixins";
+
+$colors: (
+  primery-100: #fff,
+  primery-800: #1f1f1f ,
+  accent-100: hsl(188, 61%, 50%),
+  accent-400: hsl(188, 61%, 35%),
+  special-100: #ffb74d,
+  special-800: hsl(41, 80%, 30%),
+);
+$bg-clrs: (
+  main-700: hsl(232deg 60% 8%),
+  main-800: hsl(215, 55%, 6%),
+);

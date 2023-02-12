@@ -1,0 +1,38 @@
+@use "./colors" as *
+@use  "./mixins" 
+// font-size 62.5% make the font 10px and fix it in body to be 1.6rem and this get to the default browser font (16px)
+:root
+  scroll-behavior: smooth
+  font-size: 62.5%
+  --transition-speed: 400ms
+  @include  mixins.custom-vars($colors,clr)
+  @include  mixins.custom-vars($bg-clrs,bg)
+  --shadow: rgba(0,0,0,0.5)
+body::-webkit-scrollbar
+  width: 5px
+body::-webkit-scrollbar-track 
+  background-color: #1f1f1f
+  border-radius: 15px
+body::-webkit-scrollbar-thumb
+  background-color: var(--clr-accent-400)
+  border-radius: 5px
+body
+  font-size: 1.6rem
+  font-family: 'Open Sans', sans-serif
+  background-color: var(--bg-main-800)
+  color: var(--clr-primery-100)
+  min-height: 800vh
+*,
+*::before,
+*::after
+  box-sizing: border-box
+  padding: 0
+  margin: 0
+
+a
+  color: inherit
+  text-decoration: none
+button
+  border: none
+img
+  max-width: 100%

@@ -1,0 +1,25 @@
+@use "../helpers/_mixins" as *;
+.container {
+  padding: {
+    left: 15px;
+    right: 15px;
+  }
+  width: 100%;
+  margin: 0 auto;
+  @include media(tablet){
+    width: 750px;
+    padding: 0;
+  }
+  @include media(wide) {
+    width: 1170px;
+  }
+}
+.sect-header {
+  color: hsl(188deg 18% 25%);
+  padding: 15px;
+  max-width: 600px;
+  text-align: center;
+  margin: auto;
+  font-size: 2rem;
+}
+

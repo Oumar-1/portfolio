@@ -1,0 +1,39 @@
+
+      $gradient: #4c7db6, #4c7db6, #4c7db6, #a7456d, #4c7db6;
+      $border-width: 2px;
+      &::before {
+        $size: calc(100% + $border-width * 2);
+        content: "";
+        position: absolute;
+        z-index: -2;
+        border-radius: inherit;
+        left: $border-width * -1;
+        top: $border-width * -1;
+        width: $size;
+        height: $size;
+        background-image: linear-gradient(90deg, $gradient);
+        background-size: 300% 200%;
+        animation: spining 3s linear infinite alternate;
+        animation-delay: inherit;
+        background-repeat: no-repeat;
+      }
+      &::after {
+      &::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: -1;
+        right: 0;
+        bottom: 0;
+        background: var(--bg-main-800);
+      }
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: -1;
+        right: 0;
+        bottom: 0;
+        background: var(--bg-main-800);
+      }

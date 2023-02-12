@@ -18,43 +18,43 @@
 
 /// @param(pseudo-element, content, position, dimensions..., parent-positon)
 /// create a "pseudo-element" 
-@mixin pseudo($elem:"before",$content: " ",$pos: absolute,$top: 0,$right: 0,$bottom: 0,$left: 0,$parent-pos: relative)
-  /// add poisition relative in the parent element 
-  position: $parent-pos
-  /// creating a pseudo class
-  &::#{$elem}
-    content: $content
+@mixin pseudo($e:"before",$c:" ",$pos: absolute,$t: 0,$r: null,$b: null,$l: 0,$p: relative)
+  // creating a pseudo class
+  &
+    position: $p
+  &::#{$e}
+    content: $c
     position: $pos
-    top: $top
-    right: $right
-    bottom: $bottom
-    left: $left
+    top: $t
+    right: $r
+    bottom: $b
+    left: $l
     @content
-
 @mixin overlay($color,$opacity)
   position: absolute
-  top: 0
-  right: 0
-  bottom: 0
+  width: 100%
+  height: 100%
   left: 0
+  top: 0
   background-color: rgba($color,$opacity)
 
 // fill animation 
-/// @param(overlay-color,opacity-of-color,underline , underline-color)
+/// );@param(overlay-color,opacity-of-color,underline , underline-color)
 /// make a fill animation affect 
-@mixin fillAnim($color,$opacity,$underline : false, $und-clr)
+@mixin fillAnim($c: #0000,$o: .05, $u: false,$uc: 1 , $pz: 1, $sz : -1)
   &
-    z-index: 1
+    z-index: $pz 
   @include pseudo()
-    background-color: rgba($color,$opacity)
-    transition: var(--base-transition,400ms)
-    transform: scaleX(0)
-    transform-origin: left
-    z-index: -1
-    @if $underline  == true
-      border-bottom: 1px solid $und-clr
+    background-color: $c
+    height: 100%
+    width: 0
+    opacity: $o
+    transition: width var(--transition-speed,400ms)
+    z-index: $sz
+    @if $u == true
+      border-bottom: 1px solid $uc
   &:hover::before
-    transform: scaleX(1)
+    width: 100%
 
 // center child element using display of flex
 
@@ -63,7 +63,10 @@
   justify-content: $justify
   align-items: $align
 
-@mixin convertColorsToCssVariables($map,$color-name)
-  @each $color,$shades in $map
-    @each $key,$value in $shades
-      --#{$color-name}-#{$color}-#{$key}: #{$value}
+// @mixin to-css-vars($map,$color-name)
+//   @each $color,$shades in $map
+//     @each $key,$value in $shades
+//       --#{$color-name}-#{$color}-#{$key}: #{$value}
+@mixin custom-vars($props, $prefix: "")
+  @each $prop, $value in $props
+    --#{$prefix}-#{$prop}: #{$value} 
