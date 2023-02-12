@@ -14,7 +14,7 @@
 }
 
 body::-webkit-scrollbar {
-  width: 5px;
+  width: 8px;
 }
 
 body::-webkit-scrollbar-track {
@@ -24,11 +24,11 @@ body::-webkit-scrollbar-track {
 
 body::-webkit-scrollbar-thumb {
   background-color: var(--clr-accent-400);
-  border-radius: 5px;
 }
 
 body {
   font-size: 1.6rem;
+  display: none;
   font-family: "Open Sans", sans-serif;
   background-color: var(--bg-main-800);
   color: var(--clr-primery-100);
@@ -107,36 +107,34 @@ img {
   position: absolute;
   right: 0;
   top: 0;
-  min-width: 250px;
-  min-height: 350px;
+  width: 260px;
+  min-height: 80vh;
   background-color: var(--bg-main-700);
   box-shadow: -5px -10px 100px rgba(32, 95, 154, 0.12);
 }
 .navbar .nav-links li {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  padding-block: 5px;
+  position: relative;
 }
 .navbar .nav-links li {
   z-index: 1;
-}
-.navbar .nav-links li {
-  position: relative;
 }
 .navbar .nav-links li::before {
   content: " ";
   position: absolute;
   top: 0;
+  right: 0;
+  bottom: 0;
   left: 0;
   background-color: transparent;
-  height: 100%;
-  width: 0;
   opacity: 1;
-  transition: width var(--transition-speed, 400ms);
+  transition: var(--transition-speed, 400ms);
+  transform: scaleX(0);
+  transform-origin: left;
   z-index: -1;
   border-bottom: 1px solid #25CCC7;
 }
 .navbar .nav-links li:hover::before {
-  width: 100%;
+  transform: scaleX(1);
 }
 .navbar .nav-links li .nav-link {
   transition: var(--transition-speed);
@@ -175,11 +173,11 @@ img {
     transform: translate(50%, 0%);
   }
   .navbar .nav-links {
-    min-width: 600px;
-    padding-block: 5px 15px;
     --border-rad: 0;
+    --pad: 15px;
     position: static;
     transform: none;
+    padding: var(--pad);
     min-height: unset;
     width: 100%;
     flex-direction: row;
@@ -187,10 +185,6 @@ img {
     border-radius: 0 0 5px 5px;
     align-items: center;
     justify-content: center;
-  }
-  .navbar .nav-links li {
-    border: none;
-    padding: 0;
   }
   .navbar .nav-links li:not(:last-child) {
     margin-right: 30px;
@@ -234,12 +228,6 @@ img {
   width: 100%;
   height: 100%;
   z-index: 1;
-}
-.landing .container svg {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  transform: scaleY(0.6) translateY(100%) rotate(180deg);
 }
 .landing .info h1 {
   pointer-events: none;
@@ -410,41 +398,6 @@ img {
 .showcase {
   padding-block: 15px;
 }
-.showcase .container {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 15px;
-  justify-content: center;
-}
-.showcase .project:empty {
-  background: red;
-  min-height: 400px;
-  background-color: #080b21;
-  border-radius: 10px;
-  position: relative;
-  overflow: hidden;
-}
-.showcase .project:empty::before {
-  content: "";
-  position: absolute;
-  left: 50px;
-  top: 0;
-  transform: rotate(-45deg);
-  width: 50px;
-  height: 100%;
-  background-color: #0000;
-  filter: blur(20px);
-  animation: moveupward 2s infinite linear;
-  box-shadow: -50px 0 0px rgba(255, 255, 255, 0.06);
-}
-.showcase .project .project-frame {
-  max-width: 100%;
-  width: 400px;
-  height: 400px;
-  border: 1px solid var(--clr-accent-400);
-  padding: 2px;
-  border-radius: 4px;
-}
 
 @keyframes bouncing {
   0%, 20%, 50%, 80%, 100% {
@@ -460,16 +413,6 @@ img {
 @keyframes blink {
   to {
     opacity: 0;
-  }
-}
-@keyframes moveupward {
-  from {
-    left: 0%;
-    top: 100%;
-  }
-  to {
-    left: 100%;
-    top: -100%;
   }
 }
 
