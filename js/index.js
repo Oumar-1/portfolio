@@ -90,11 +90,16 @@ function createElement(type, content = null, attrs = {}) {
 
 // @params $element $callback
 // $element a node element
-function typingAnimation(element, callback) {
+function typingAnimation(element, props = {}, callback) {
   if (element && element.nodeType !== Node.ELEMENT_NODE) {
     return console.error(new Error('only accept node elements'));
   }
+  props = {
+    delay: props.delay || 1000,
+    speed: props.speed || 60,
+  };
   const content = element.textContent.trim();
+
   element.textContent = '';
   let isTyping = false; // to avoid multiple typing
   const event = () => {
@@ -102,13 +107,15 @@ function typingAnimation(element, callback) {
     if (isElementVisible(element)) {
       isTyping = true;
       let count = 0;
-      const interval = setInterval(() => {
-        element.textContent += content[count++];
-        if (count >= content.length) {
-          clearInterval(interval);
-          if (typeof callback === 'function') callback();
-        }
-      }, 60);
+      setTimeout(() => {
+        const interval = setInterval(() => {
+          element.textContent += content[count++];
+          if (count >= content.length) {
+            clearInterval(interval);
+            if (typeof callback === 'function') callback();
+          }
+        }, props.speed);
+      }, props.delay);
       window.removeEventListener('scroll', event);
     }
   };
