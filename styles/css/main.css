@@ -455,4 +455,31 @@ img {
   border-radius: 4px;
 }
 
+@keyframes bouncing {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-30px);
+  }
+  60% {
+    transform: translateY(-15px);
+  }
+}
+@keyframes blink {
+  to {
+    opacity: 0;
+  }
+}
+@keyframes moveupward {
+  from {
+    left: 0%;
+    top: 100%;
+  }
+  to {
+    left: 100%;
+    top: -100%;
+  }
+}
+
 /*# sourceMappingURL=main.css.map */
