@@ -1,0 +1,51 @@
+@use '../../helpers/_mixins' as *;
+.about {
+  .blob {
+    height: 200px;
+    width: 200px;
+    margin-inline: auto;
+    margin-bottom: 30px;
+    overflow: hidden;
+    position: relative;
+    border-bottom-right-radius: 30% 25%;
+    border-bottom-left-radius: 30% 25%;
+    &:hover {
+      img {
+        transform: translate(5px, -35px) scale(0.8);
+      }
+      .overlay {
+        background-position: 100% 100%;
+      }
+    }
+    @include media(min-mobile) {
+      width: 270px;
+      height: 270px;
+      &:hover img {
+        transform: translate(5px, -55px) scale(0.75);
+      }
+    }
+    .overlay {
+      background-image: linear-gradient(
+        180deg,
+        var(--clr-accent-100),
+        #4c7db6,
+        #a7456d
+      );
+      border-radius: 76% 76% 60% 52% / 100% 100% 46% 50%;
+      position: absolute;
+      width: 100%;
+      height: 95%;
+      left: 0;
+      bottom: -10px;
+      transition: background var(--transition-speed) ease-in-out;
+      background-repeat: no-repeat;
+      background-size: 100% 200%;
+      background-position: 0% 60%;
+    }
+    img {
+      transition: transform var(--transition-speed) ease-in-out;
+      max-width: 100%;
+      transform: translate(5px, -15px) scale(0.75);
+    }
+  }
+}

@@ -1,0 +1,12 @@
+%cursor {
+  &::after {
+    content: '|';
+    color: var(--clr-accent-100);
+    font-weight: bold;
+    animation: blink 500ms infinite;
+    opacity: 1;
+  }
+  &.cursor-hide::after {
+    opacity: 0;
+  }
+}

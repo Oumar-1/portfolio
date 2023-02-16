@@ -1,0 +1,12 @@
+@forward './skills';
+@forward './blob';
+@forward './description';
+.about {
+  background-color: var(--bg-main-700);
+  color: var(--clr-primery-100);
+  min-height: 100vh;
+  padding: {
+    top: 6rem;
+    bottom: 6rem;
+  }
+}

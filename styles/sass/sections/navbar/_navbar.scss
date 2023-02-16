@@ -1,0 +1,12 @@
+@forward './navlinks';
+@forward './menu-icon';
+.navbar {
+  position: fixed;
+  top: 15px;
+  right: 0;
+  z-index: 100;
+  &[aria-expanded='true'] .nav-links {
+    transform: translateX(0);
+  }
+}
+// wide screens styling

@@ -1,0 +1,31 @@
+@use '../../helpers/_mixins' as *;
+.nav {
+  .menu {
+    width: 25px;
+    cursor: pointer;
+    user-select: none;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    padding: 10px;
+    box-sizing: content-box;
+    padding-bottom: 0;
+    z-index: 3;
+    @include media(min-mobile) {
+      width: 100%;
+      padding: 0;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      text-align: center;
+      cursor: default;
+      img {
+        width: 30px;
+        cursor: pointer;
+      }
+    }
+    img {
+      width: 25px;
+    }
+  }
+}
