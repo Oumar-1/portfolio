@@ -1,0 +1,44 @@
+[
+  {
+    "name": "Tenzies",
+    "langs": ["HTML", "CSS", "JS", "React", "SASS"],
+    "links": {
+      "code_source": "https://github.com/Oumar-1/Tenzies",
+      "live": "https://oumar-1.github.io/Tenzies"
+    }
+  },
+  {
+    "name": "Quizzical",
+    "langs": ["HTML", "CSS", "JS", "SASS", "React"],
+    "tools": ["Formik", "Yup" , "react-router-dom"],
+    "description": "Quiz generator app with alot of feature like create multiple types of questions ",
+    "links": {
+      "code_source": "https://github.com/Oumar-1/Quizzical",
+      "live": "https://oumar-1.github.io/Quizzical"
+    }
+  },
+  {
+    "name": "Smak",
+    "langs": ["HTML", "CSS", "JS"],
+    "links": {
+      "code_source": "https://github.com/Oumar-1/smak",
+      "live": "https://oumar-1.github.io/smak"
+    }
+  },
+  {
+    "name": "Memory-Game",
+    "langs": ["HTML", "CSS", "JS"],
+    "links": {
+      "code_source": "https://github.com/Oumar-1/Memory-Game",
+      "live": "https://oumar-1.github.io/Memory-Game"
+    }
+  },
+  {
+    "name": "time-tracking",
+    "langs": ["HTML", "CSS", "JS"],
+    "links": {
+      "code_source": "https://github.com/Oumar-1/time-tracking",
+      "live": "https://oumar-1.github.io/time-tracking"
+    }
+  }
+]
