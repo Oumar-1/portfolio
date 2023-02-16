@@ -1,122 +1,122 @@
 <!DOCTYPE html>
+
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="author" content="Oumar Moulay" />
-    <meta name="description" content="Oumar's Portfolio Website" />
-    <title>My World</title>
-    <!-- google fonts -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,800;1,700&display=swap"
-      rel="stylesheet"
-    />
-    <!-- style sheet -->
-    <link rel="stylesheet" href="css/normalize.css" />
-    <link rel="stylesheet" href="css/style.css" />
-    <link rel="icon" type="image/x-icon" href="/imgs/icons/favicon.ico" />
-  </head>
-  <body>
-    <!-- navigation bar -->
-    <nav class="navbar" id="nav-menu" aria-expanded="false">
-      <div class="menu" aria-controls="nav-menu">
-        <img src="" alt="menu toggle" />
-      </div>
-      <ul class="nav-links">
-        <li>
-          <a href="#home" class="nav-link">Home</a>
-        </li>
 
-        <li>
-          <a href="#about" class="nav-link">About</a>
-        </li>
-        <li>
-          <a href="#showcase" class="nav-link">showcase</a>
-        </li>
-        <li>
-          <a href="#contact" class="nav-link">Contact</a>
-        </li>
-      </ul>
-    </nav>
-    <!-- Landing -->
-    <header class="landing" id="home">
-      <!-- particles canvas -->
-      <div id="particles-js"></div>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="author" content="Oumar Moulay" />
+  <meta name="description" content="Oumar's Portfolio Website" />
+  <title>My World</title>
+  <!-- google fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,800;1,700&display=swap"
+    rel="stylesheet" />
+  <!-- style sheet -->
+  <link rel="stylesheet" href="styles/css/main.css" />
+  <link rel="icon" type="image/x-icon" href="/imgs/icons/favicon.ico" />
+</head>
 
-      <div class="container">
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="var(--bg-main-800)" fill-opacity="1" d="M0,160L48,170.7C96,181,192,203,288,181.3C384,160,480,96,576,106.7C672,117,768,203,864,208C960,213,1056,139,1152,117.3C1248,96,1344,128,1392,144L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>
-        <div class="info">
-          <h1>
-            Hi, I'm Oumar. I'm a junior web developer seeking new job
-            opportunities. Thank you for considering my skills and experience
-          </h1>
-        </div>
+<body>
+  <!-- navigation bar -->
+  <nav class="navbar" id="nav-menu" aria-expanded="false">
+    <div class="menu" aria-controls="nav-menu">
+      <img src="" alt="menu toggle" />
+    </div>
+    <ul class="nav-links">
+      <li>
+        <a href="#home" class="nav-link">Home</a>
+      </li>
+
+      <li>
+        <a href="#about" class="nav-link">About</a>
+      </li>
+      <li>
+        <a href="#showcase" class="nav-link">showcase</a>
+      </li>
+      <li>
+        <a href="#contact" class="nav-link">Contact</a>
+      </li>
+    </ul>
+  </nav>
+  <!-- Landing -->
+  <header class="landing" id="home">
+    <!-- particles canvas -->
+    <div id="particles-js"></div>
+
+    <div class="container">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+        <path fill="var(--bg-main-800)" fill-opacity="1"
+          d="M0,160L48,170.7C96,181,192,203,288,181.3C384,160,480,96,576,106.7C672,117,768,203,864,208C960,213,1056,139,1152,117.3C1248,96,1344,128,1392,144L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z">
+        </path>
+      </svg>
+      <div class="info" data-typing-animation>
+        <h1>Welcome To my World</h1>
       </div>
-    </header>
-    <!-- about me -->
-    <section class="about" id="about">
-      <div class="container">
-        <div class="info">
-          <div class="shape">
-            <div class="overlay"></div>
-            <picture>
-              <source
-                srcset="imgs/personal/author_xl.webp"
-                media="(min-width: 900px)"
-              />
-              <img
-                src="imgs/personal/author_s.webp"
-                alt="the website owner image"
-              />
-            </picture>
-          </div>
-          <p class="discription">
-            As a self-taught front-end developer, I am excited to bring my
-            skills and experience to a new opportunity. My name is Oumar Moulay,
-            and I am originally from Mali but currently living in Saudi Arabia.
-            I am eager to join a team and contribute to the development of
-            innovative and high-quality projects.
-          </p>
+    </div>
+  </header>
+  <!-- about me -->
+  <section class="about" id="about">
+    <div class="container">
+      <div class="about-me">
+        <div class="blob">
+          <div class="overlay"></div>
+          <picture>
+            <source srcset="imgs/personal/author_xl.webp" media="(min-width: 900px)" />
+            <img src="imgs/personal/author_s.webp" alt="the website owner image" />
+          </picture>
         </div>
-        <h4 class="skills-title">
+        <p class="discription">
+          Hi, I'm Oumar.a junior web developer seeking new job opportunities.
+          Thank you for considering my skills and experience
+        </p>
+      </div>
+      <div class="skills">
+        <h4 data-typing-animation class="skills-intro">
           My skillset is constantly evolving, but here are a few highlights:
         </h4>
-        <div class="skills">
-          <div class="skill">
+        <div class="skill">
+          <div class="skill-content">
             <div class="img-container">
               <img src="imgs/icons//about/html.svg" alt="HTML Icon" />
             </div>
             <p class="title">HTML</p>
           </div>
-          <div class="skill">
+        </div>
+        <div class="skill">
+          <div class="skill-content">
             <div class="img-container">
               <img src="imgs/icons//about/css.svg" alt="CSS Icon" />
             </div>
             <p class="title">CSS</p>
           </div>
-          <div class="skill">
+        </div>
+        <div class="skill">
+          <div class="skill-content">
             <div class="img-container">
-              <img
-                src="imgs/icons//about/javascript.svg"
-                alt="JAVASCRIPT Icon"
-              />
+              <img src="imgs/icons//about/javascript.svg" alt="JAVASCRIPT Icon" />
             </div>
             <p class="title">JAVASCRIPT</p>
           </div>
-          <div class="skill">
+        </div>
+        <div class="skill">
+          <div class="skill-content">
             <div class="img-container">
               <img src="imgs/icons//about/sass.svg" alt="SASS Icon" />
             </div>
             <p class="title">SASS</p>
           </div>
-          <div class="skill">
+        </div>
+        <div class="skill">
+          <div class="skill-content">
             <div class="img-container">
               <img src="imgs/icons//about/bootstrap.svg" alt="BootStrap Icon" />
             </div>
             <p class="title">BootStrap</p>
           </div>
-          <div class="skill">
+        </div>
+        <div class="skill">
+          <div class="skill-content">
             <div class="img-container">
               <img src="imgs/icons//about/react.svg" alt="React Icon" />
             </div>
@@ -124,19 +124,17 @@
           </div>
         </div>
       </div>
-    </section>
-    <section class="showcase container" id="showcase">
-      <p class="sect-header">
-        Welcome to my showcase! I am excited to share with you some of my recent
-        projects.
-      </p>
-      <div class="container">
-      </div>
-    </section>
-    <script
-      defer
-      src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"
-    ></script>
-    <script defer src="js/index.js"></script>
-  </body>
+    </div>
+  </section>
+  <section class="showcase container" id="showcase">
+    <p class="sect-header">
+      Welcome to my showcase! I am excited to share with you some of my recent
+      projects.
+    </p>
+    <div class="container"></div>
+  </section>
+  <script defer src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <script defer src="./js/index.js"></script>
+</body>
+
 </html>
