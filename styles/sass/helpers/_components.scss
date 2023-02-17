@@ -1,4 +1,4 @@
-@use "../helpers/_mixins" as *;
+@use '../helpers/_mixins' as *;
 .container {
   padding: {
     left: 15px;
@@ -6,7 +6,7 @@
   }
   width: 100%;
   margin: 0 auto;
-  @include media(tablet){
+  @include media(tablet) {
     width: 750px;
     padding: 0;
   }
@@ -22,4 +22,15 @@
   margin: auto;
   font-size: 2rem;
 }
-
+.typing-cursor {
+  &::after {
+    content: '|';
+    color: var(--clr-accent-100);
+    font-weight: bold;
+    animation: blink 500ms infinite;
+    opacity: 1;
+  }
+  &.cursor-hide::after {
+    opacity: 0;
+  }
+}
