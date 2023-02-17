@@ -1,5 +1,7 @@
+@use '../../helpers/_mixins' as mix;
 @forward './navlinks';
 @forward './menu-icon';
+
 .navbar {
   position: fixed;
   top: 15px;
@@ -7,6 +9,15 @@
   z-index: 100;
   &[aria-expanded='true'] .nav-links {
     transform: translateX(0);
+  }
+  @include mix.media(min-mobile) {
+    right: 50%;
+    top: 0;
+    transition: transform var(--transition-speed);
+    transform: translate(50%, -100%);
+    &[aria-expanded='true'] {
+      transform: translate(50%, 0%);
+    }
   }
 }
 // wide screens styling
