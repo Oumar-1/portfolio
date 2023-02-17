@@ -82,14 +82,14 @@ img {
   font-size: 2rem;
 }
 
-.about .skills .skills-intro::after {
+.typing-cursor::after {
   content: "|";
   color: var(--clr-accent-100);
   font-weight: bold;
   animation: blink 500ms infinite;
   opacity: 1;
 }
-.about .skills .cursor-hide.skills-intro::after {
+.typing-cursor.cursor-hide::after {
   opacity: 0;
 }
 
@@ -218,7 +218,7 @@ img {
   padding-bottom: 6rem;
 }
 
-.nav .nav-links {
+.navbar .nav-links {
   --border-rad: 10px 0 0 10px;
   --pad: 40px;
   display: flex;
@@ -240,17 +240,17 @@ img {
   backdrop-filter: blur(10px);
   box-shadow: -5px -10px 100px rgba(32, 95, 154, 0.12);
 }
-.nav .nav-links li {
+.navbar .nav-links li {
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   padding-block: 5px;
 }
-.nav .nav-links li {
+.navbar .nav-links li {
   z-index: 1;
 }
-.nav .nav-links li {
+.navbar .nav-links li {
   position: relative;
 }
-.nav .nav-links li::before {
+.navbar .nav-links li::before {
   content: " ";
   position: absolute;
   top: 0;
@@ -263,10 +263,10 @@ img {
   z-index: -1;
   border-bottom: 1px solid #25ccc7;
 }
-.nav .nav-links li:hover::before {
+.navbar .nav-links li:hover::before {
   width: 100%;
 }
-.nav .nav-links li .nav-link {
+.navbar .nav-links li .nav-link {
   transition: var(--transition-speed);
   top: 15px;
   bottom: 15px;
@@ -274,20 +274,11 @@ img {
   display: block;
   width: 100%;
 }
-.nav .nav-links li .nav-link:hover, .nav .nav-links li .nav-link:focus {
+.navbar .nav-links li .nav-link:hover, .navbar .nav-links li .nav-link:focus {
   color: #25ccc7;
 }
 @media (min-width: 768px) {
-  .nav .nav-links {
-    right: 50%;
-    top: 0;
-    transition: transform var(--transition-speed);
-    transform: translate(50%, -100%);
-  }
-  .nav .nav-links[aria-expanded=true] {
-    transform: translate(50%, 0%);
-  }
-  .nav .nav-links .nav-links {
+  .navbar .nav-links {
     min-width: 600px;
     padding-block: 5px 15px;
     --border-rad: 0;
@@ -301,24 +292,24 @@ img {
     align-items: center;
     justify-content: center;
   }
-  .nav .nav-links .nav-links li {
+  .navbar .nav-links li {
     border: none;
     padding: 0;
   }
-  .nav .nav-links .nav-links:not(:last-child) {
+  .navbar .nav-links:not(:last-child) {
     margin-right: 30px;
   }
-  .nav .nav-links .nav-links .nav-link {
+  .navbar .nav-links .nav-link {
     padding: 10px 15px;
     font-size: 1.9rem;
     text-transform: capitalize;
   }
-  .nav .nav-links .nav-links .nav-link::before {
+  .navbar .nav-links .nav-link::before {
     transform-origin: right;
   }
 }
 
-.nav .menu {
+.navbar .menu {
   width: 25px;
   cursor: pointer;
   user-select: none;
@@ -331,7 +322,7 @@ img {
   z-index: 3;
 }
 @media (min-width: 768px) {
-  .nav .menu {
+  .navbar .menu {
     width: 100%;
     padding: 0;
     position: absolute;
@@ -340,12 +331,12 @@ img {
     text-align: center;
     cursor: default;
   }
-  .nav .menu img {
+  .navbar .menu img {
     width: 30px;
     cursor: pointer;
   }
 }
-.nav .menu img {
+.navbar .menu img {
   width: 25px;
 }
 
@@ -357,6 +348,17 @@ img {
 }
 .navbar[aria-expanded=true] .nav-links {
   transform: translateX(0);
+}
+@media (min-width: 768px) {
+  .navbar {
+    right: 50%;
+    top: 0;
+    transition: transform var(--transition-speed);
+    transform: translate(50%, -100%);
+  }
+  .navbar[aria-expanded=true] {
+    transform: translate(50%, 0%);
+  }
 }
 
 .landing {
@@ -383,12 +385,12 @@ img {
   bottom: 0;
   transform: scaleY(0.6) translateY(100%) rotate(180deg);
 }
-.landing .info h1 {
+.landing .container h1 {
   pointer-events: none;
   font-weight: 800;
   box-shadow: 0px 0px 13px -8px var(--clr-accent-300) inset;
   border-radius: 4px;
-  font-size: 2.5rem;
+  font-size: 2em;
   text-transform: capitalize;
   font-family: "Helvetica", "Arial", "sans-serif";
   padding: 15px;
@@ -400,17 +402,12 @@ img {
   z-index: 2;
   width: 100%;
 }
-.landing .info h1 .skill {
-  color: var(--clr-accent-100);
-}
-.landing .info h1 .skill .welcome-animation {
-  transform: translateY(0);
-  display: inline-block;
-  animation: bouncing 1s 400ms;
+.landing .container h1:after {
+  color: var(--clr-accent-300);
 }
 @media (min-width: 768px) {
-  .landing .info h1 {
-    font-size: 3.5rem;
+  .landing .container h1 {
+    font-size: 3.1em;
     font-family: Helvetica;
     padding: 30px;
   }
