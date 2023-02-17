@@ -7,6 +7,7 @@ const breakPoints = {
   s: 767,
   xl: 1200,
 };
+landing();
 navbar();
 about();
 showcase();
@@ -18,6 +19,11 @@ function largeScreenCheck() {
 function isElementVisible(el) {
   const rect = el.getBoundingClientRect().top;
   return rect + 3 <= window.innerHeight;
+}
+
+function landing() {
+  const title = document.getElementById('landing-title');
+  typingAnimation(title, false , {speed: 100});
 }
 
 function navbar() {
@@ -65,9 +71,13 @@ function about() {
   const skillsContainer = document.querySelector('.skills');
   const skills = document.querySelectorAll('.skill');
   const skillsTitle = document.querySelector('.skills-intro');
-  typingAnimation(skillsTitle, () => {
-    skillsTitle.classList.add('cursor-hide');
-  });
+  typingAnimation(
+    skillsTitle,
+    () => {
+      setTimeout(() => skillsTitle.classList.add('cursor-hide'), 1000);
+    },
+    { speed: 80 }
+  );
   let delayCount = 0;
   skills.forEach((skill) => {
     skill.style.transitionDelay = delayCount + 'ms';
@@ -90,38 +100,68 @@ function createElement(type, content = null, attrs = {}) {
 
 // @params $element $callback
 // $element a node element
-function typingAnimation(element, props = {}, callback) {
-  if (element && element.nodeType !== Node.ELEMENT_NODE) {
+function typingAnimation(element, callback, props = {}) {
+  if (!element || element.nodeType !== Node.ELEMENT_NODE) {
     return console.error(new Error('only accept node elements'));
   }
-  props = {
-    delay: props.delay || 1000,
-    speed: props.speed || 60,
-  };
-  const content = element.textContent.trim();
 
+  props = {
+    delay: props.delay || 1000, // typing delay before start
+    speed: props.speed || 50, // speed of typing
+  };
+
+  if (props.cursor === false) {
+    props.cursor = {};
+  } else
+    props.cursor = {
+      enable: props.cursor?.enable ?? true,
+      remove: props.cursor?.remove ?? true,
+      vanishDelay: props.cursor?.vanishDelay ?? 1000,
+    };
+
+  function insertText(finishtyping) {
+    let count = 0;
+    const interval = setInterval(() => {
+      element.textContent += content[count++];
+      if (count >= content.length) {
+        clearInterval(interval);
+        finishtyping();
+      }
+    }, props.speed);
+  }
+
+  function addCursor(element) {
+    if (!props.cursor.enable) return false;
+    element.classList.add('typing-cursor');
+    return true;
+  }
+  function removeCursor() {
+    if (!props.cursor.remove) return false;
+    setTimeout(() => {
+      element.classList.remove('typing-cursor');
+    }, props.cursor.vanishDelay);
+    return true;
+  }
+
+  const content = element.textContent.trim();
   element.textContent = '';
+  addCursor(element);
   let isTyping = false; // to avoid multiple typing
-  const event = () => {
-    if (isTyping === true) return;
+  function eventHandler() {
+    if (isTyping) return;
     if (isElementVisible(element)) {
       isTyping = true;
-      let count = 0;
+      // delay timer
       setTimeout(() => {
-        const interval = setInterval(() => {
-          element.textContent += content[count++];
-          if (count >= content.length) {
-            clearInterval(interval);
-            if (typeof callback === 'function') callback();
-          }
-        }, props.speed);
+        // callback after insertion finish
+        insertText(removeCursor);
       }, props.delay);
-      window.removeEventListener('scroll', event);
+      window.removeEventListener('scroll', eventHandler);
     }
-  };
+  }
 
-  window.addEventListener('load', event, { once: true });
-  window.addEventListener('scroll', event);
+  window.addEventListener('load', eventHandler, { once: true });
+  window.addEventListener('scroll', eventHandler);
 }
 function appendElements(target, ...elements) {
   elements.forEach((element) => target.appendChild(element));
