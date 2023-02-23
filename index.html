@@ -19,11 +19,8 @@
 
 <body>
   <!-- navigation bar -->
-  <nav class="navbar" id="nav-menu" aria-expanded="false">
-    <div class="menu" aria-controls="nav-menu">
-      <img src="" alt="menu toggle" />
-    </div>
-    <ul class="nav-links">
+  <nav class="navbar" id="navbar">
+    <ul class="nav-links" id="nav-menu">
       <li>
         <a href="#home" class="nav-link">Home</a>
       </li>
@@ -38,6 +35,10 @@
         <a href="#contact" class="nav-link">Contact</a>
       </li>
     </ul>
+    <div id="nav-toggler" class="menu" aria-controls="nav-menu">
+      <button class="nav-toggler-btn" aria-label="Toggle navigatio menu"></button>
+    </div>
+    <div class="overlay"></div>
   </nav>
   <!-- Landing -->
   <header class="landing" id="home">
@@ -45,11 +46,6 @@
     <div id="particles-js"></div>
 
     <div class="container">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-        <path fill="var(--bg-main-800)" fill-opacity="1"
-          d="M0,160L48,170.7C96,181,192,203,288,181.3C384,160,480,96,576,106.7C672,117,768,203,864,208C960,213,1056,139,1152,117.3C1248,96,1344,128,1392,144L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z">
-        </path>
-      </svg>
       <div class="landing-content">
         <h1 id="landing-title">Welcome To my World</h1>
       </div>
@@ -67,60 +63,71 @@
           </picture>
         </div>
         <p class="discription">
-          Hi, I'm Oumar.a junior web developer seeking new job opportunities.
-          Thank you for considering my skills and experience
+          Hi, I'm Oumar. a self-taught junior frontend developer thank you for
+          visiting my portfolio and here are a few of my Skills
+          <svg height="20" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="m18.78 11.374-4.78-6a1 1 0 0 0-1.41-.15 1 1 0 0 0-.15 1.41l4.27 5.37-4.48 5.37a1.001 1.001 0 0 0 .13 1.41 1 1 0 0 0 .64.22 1 1 0 0 0 .77-.36l5-6a1 1 0 0 0 .01-1.27Z">
+            </path>
+            <path
+              d="M7 5.369a1.022 1.022 0 0 0-1.61 1.26l4.32 5.37-4.48 5.36a1 1 0 0 0 1.195 1.546 1 1 0 0 0 .345-.266l5-6a1 1 0 0 0 0-1.27l-4.77-6Z">
+            </path>
+          </svg>
         </p>
       </div>
-      <div class="skills">
+      <div class="skills" id="about-skills">
         <h4 data-typing-animation class="skills-intro">
           My skillset is constantly evolving, but here are a few highlights:
         </h4>
-        <div class="skill">
-          <div class="skill-content">
-            <div class="img-container">
-              <img src="imgs/icons//about/html.svg" alt="HTML Icon" />
+
+        <div id="skills-container">
+          <div class="skill">
+            <div class="skill-content">
+              <div class="img-container">
+                <img src="imgs/icons//about/html.svg" alt="HTML Icon" />
+              </div>
+              <p class="title">HTML</p>
             </div>
-            <p class="title">HTML</p>
           </div>
-        </div>
-        <div class="skill">
-          <div class="skill-content">
-            <div class="img-container">
-              <img src="imgs/icons//about/css.svg" alt="CSS Icon" />
+          <div class="skill">
+            <div class="skill-content">
+              <div class="img-container">
+                <img src="imgs/icons//about/css.svg" alt="CSS Icon" />
+              </div>
+              <p class="title">CSS</p>
             </div>
-            <p class="title">CSS</p>
           </div>
-        </div>
-        <div class="skill">
-          <div class="skill-content">
-            <div class="img-container">
-              <img src="imgs/icons//about/javascript.svg" alt="JAVASCRIPT Icon" />
+          <div class="skill">
+            <div class="skill-content">
+              <div class="img-container">
+                <img src="imgs/icons//about/javascript.svg" alt="JAVASCRIPT Icon" />
+              </div>
+              <p class="title">JAVASCRIPT</p>
             </div>
-            <p class="title">JAVASCRIPT</p>
           </div>
-        </div>
-        <div class="skill">
-          <div class="skill-content">
-            <div class="img-container">
-              <img src="imgs/icons//about/sass.svg" alt="SASS Icon" />
+          <div class="skill">
+            <div class="skill-content">
+              <div class="img-container">
+                <img src="imgs/icons//about/sass.svg" alt="SASS Icon" />
+              </div>
+              <p class="title">SASS</p>
             </div>
-            <p class="title">SASS</p>
           </div>
-        </div>
-        <div class="skill">
-          <div class="skill-content">
-            <div class="img-container">
-              <img src="imgs/icons//about/bootstrap.svg" alt="BootStrap Icon" />
+          <div class="skill">
+            <div class="skill-content">
+              <div class="img-container">
+                <img src="imgs/icons//about/bootstrap.svg" alt="BootStrap Icon" />
+              </div>
+              <p class="title">BootStrap</p>
             </div>
-            <p class="title">BootStrap</p>
           </div>
-        </div>
-        <div class="skill">
-          <div class="skill-content">
-            <div class="img-container">
-              <img src="imgs/icons//about/react.svg" alt="React Icon" />
+          <div class="skill">
+            <div class="skill-content">
+              <div class="img-container">
+                <img src="imgs/icons//about/react.svg" alt="React Icon" />
+              </div>
+              <p class="title">React</p>
             </div>
-            <p class="title">React</p>
           </div>
         </div>
       </div>
