@@ -38,7 +38,7 @@
       z-index: 2;
       width: 100%;
       &:after {
-        color: var(--clr-accent-300)
+        color: var(--clr-accent-400)
       }
       @include media(min-mobile) {
         font-size: 3.1em;

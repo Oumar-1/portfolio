@@ -25,9 +25,12 @@
 .typing-cursor {
   &::after {
     content: '|';
-    color: var(--clr-accent-100);
-    font-weight: bold;
-    animation: blink 500ms infinite;
+    margin-left: 0.1em;
+    height: 100%;
+    font-family: sans-serif;
+    font-weight: lighter;
+    display: inline-block;
+    animation: blink 350ms infinite;
     opacity: 1;
   }
   &.cursor-hide::after {

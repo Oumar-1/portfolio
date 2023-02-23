@@ -10,6 +10,7 @@
   --clr-special-800: hsl(41deg, 80%, 30%);
   --bg-main-700: hsl(232deg, 60%, 8%);
   --bg-main-800: hsl(215deg, 55%, 6%);
+  --bg-transparent-500: rgba(0, 0, 0, 0.5);
   --shadow: rgba(0,0,0,0.5);
 }
 
@@ -84,23 +85,26 @@ img {
 
 .typing-cursor::after {
   content: "|";
-  color: var(--clr-accent-100);
-  font-weight: bold;
-  animation: blink 500ms infinite;
+  margin-left: 0.1em;
+  height: 100%;
+  font-family: sans-serif;
+  font-weight: lighter;
+  display: inline-block;
+  animation: blink 350ms infinite;
   opacity: 1;
 }
 .typing-cursor.cursor-hide::after {
   opacity: 0;
 }
 
-.about .skills {
+.about .skills #skills-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(100px, 110px));
   justify-content: center;
   align-items: center;
   gap: 10px;
 }
-.about .skills.active .skill {
+.about .skills #skills-container.active .skill {
   filter: brightness(1);
   transform: scale(1);
 }
@@ -203,11 +207,14 @@ img {
 
 .about .discription {
   color: var(--clr-primery-300);
-  text-align: start;
   font-size: 1.5rem;
   line-height: 1.5;
-  max-width: 600px;
-  margin: auto;
+  max-width: 400px;
+  font-size: 1.5em;
+}
+.about .discription svg {
+  margin-bottom: -3px;
+  color: var(--clr-accent-400);
 }
 
 .about {
@@ -220,25 +227,23 @@ img {
 
 .navbar .nav-links {
   --border-rad: 10px 0 0 10px;
-  --pad: 40px;
   display: flex;
-  font-weight: 400;
+  transform: translateX(100%);
   flex-direction: column;
+  font-weight: 400;
   list-style: none;
-  transform: translate(100%);
   border-radius: var(--border-rad);
-  padding: var(--pad) 0;
+  padding-top: 50px;
   color: var(--clr-primery-100);
-  overflow: hidden;
-  transition: transform var(--transition-speed, 400ms);
-  position: absolute;
-  right: 0;
-  top: 0;
+  transition-duration: var(--transition-speed, 400ms);
   min-width: 250px;
-  min-height: 350px;
+  min-height: 400px;
   background-color: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(10px);
   box-shadow: -5px -10px 100px rgba(32, 95, 154, 0.12);
+}
+.navbar .nav-links[aria-expanded=true] {
+  transform: translateX(0%);
 }
 .navbar .nav-links li {
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
@@ -268,9 +273,7 @@ img {
 }
 .navbar .nav-links li .nav-link {
   transition: var(--transition-speed);
-  top: 15px;
-  bottom: 15px;
-  left: 20px;
+  padding: 10px 15px;
   display: block;
   width: 100%;
 }
@@ -279,50 +282,108 @@ img {
 }
 @media (min-width: 768px) {
   .navbar .nav-links {
+    height: 65px;
+    width: fit-content;
     min-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: -65px;
     padding-block: 5px 15px;
     --border-rad: 0;
     position: static;
     transform: none;
     min-height: unset;
-    width: 100%;
     flex-direction: row;
+    gap: 20px;
     box-shadow: rgba(32, 95, 154, 0.12) 0px 13px 13px -12px;
     border-radius: 0 0 5px 5px;
     align-items: center;
     justify-content: center;
   }
+  .navbar .nav-links[aria-expanded=true] {
+    margin-top: 0;
+  }
   .navbar .nav-links li {
     border: none;
     padding: 0;
   }
-  .navbar .nav-links:not(:last-child) {
-    margin-right: 30px;
-  }
-  .navbar .nav-links .nav-link {
+  .navbar .nav-links li .nav-link {
     padding: 10px 15px;
     font-size: 1.9rem;
     text-transform: capitalize;
   }
-  .navbar .nav-links .nav-link::before {
+  .navbar .nav-links li .nav-link::before {
     transform-origin: right;
   }
 }
 
-.navbar .menu {
-  width: 25px;
-  cursor: pointer;
+.navbar #nav-toggler {
   user-select: none;
   position: absolute;
   right: 10px;
   top: 10px;
-  padding: 10px;
   box-sizing: content-box;
   padding-bottom: 0;
   z-index: 3;
 }
+.navbar #nav-toggler .nav-toggler-btn {
+  cursor: pointer;
+  width: 30px;
+  background-color: rgba(0, 0, 0, 0);
+  color: #fff;
+}
+.navbar #nav-toggler .nav-toggler-btn .navicon-s .l0 {
+  fill: none;
+  stroke: #fff;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 6;
+  transition: var(--transition-speed) cubic-bezier(0.4, 0, 0.2, 1);
+}
+.navbar #nav-toggler .nav-toggler-btn .navicon-s .l1 {
+  stroke-dasharray: 60 207;
+}
+.navbar #nav-toggler .nav-toggler-btn .navicon-s .l2 {
+  stroke-dasharray: 60 60;
+}
+.navbar #nav-toggler .nav-toggler-btn .navicon-s .l3 {
+  stroke-dasharray: 60 207;
+}
+.navbar #nav-toggler .nav-toggler-btn .navicon-xl {
+  filter: drop-shadow(1px 1px 8px var(--bg-transparent-100));
+}
+.navbar #nav-toggler .nav-toggler-btn .navicon-xl .t0 {
+  transition: 600ms, fill 300ms -300ms;
+  stroke: rgba(255, 255, 255, 0.6);
+  fill: rgba(255, 255, 255, 0);
+}
+.navbar #nav-toggler .nav-toggler-btn .navicon-xl .t1 {
+  stroke-dasharray: 206;
+}
+.navbar #nav-toggler .nav-toggler-btn .navicon-xl .t2 {
+  stroke-dasharray: 0 206;
+  stroke-dashoffset: 1;
+}
+.navbar #nav-toggler .nav-toggler-btn[aria-expanded=true] .navicon-xl .t1 {
+  stroke-dashoffset: 206;
+}
+.navbar #nav-toggler .nav-toggler-btn[aria-expanded=true] .navicon-xl .t2 {
+  stroke-dasharray: 206;
+}
+.navbar #nav-toggler .nav-toggler-btn[aria-expanded=true] .navicon-s .l1 {
+  stroke-dasharray: 90 207;
+  stroke-dashoffset: -134;
+}
+.navbar #nav-toggler .nav-toggler-btn[aria-expanded=true] .navicon-s .l2 {
+  stroke-dasharray: 1 60;
+  stroke-dashoffset: -30;
+}
+.navbar #nav-toggler .nav-toggler-btn[aria-expanded=true] .navicon-s .l3 {
+  stroke-dasharray: 90 207;
+  stroke-dashoffset: -134;
+}
 @media (min-width: 768px) {
-  .navbar .menu {
+  .navbar #nav-toggler {
     width: 100%;
     padding: 0;
     position: absolute;
@@ -331,13 +392,26 @@ img {
     text-align: center;
     cursor: default;
   }
-  .navbar .menu img {
+  .navbar #nav-toggler .nav-toggler-btn {
+    width: 20px;
+  }
+  .navbar #nav-toggler img {
     width: 30px;
     cursor: pointer;
   }
 }
-.navbar .menu img {
+.navbar #nav-toggler img {
   width: 25px;
+}
+
+.navbar .overlay {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  display: none;
+}
+.navbar:has(button[aria-expanded=true]) .overlay {
+  display: block;
 }
 
 .navbar {
@@ -346,18 +420,11 @@ img {
   right: 0;
   z-index: 100;
 }
-.navbar[aria-expanded=true] .nav-links {
-  transform: translateX(0);
-}
 @media (min-width: 768px) {
   .navbar {
-    right: 50%;
     top: 0;
+    width: 100%;
     transition: transform var(--transition-speed);
-    transform: translate(50%, -100%);
-  }
-  .navbar[aria-expanded=true] {
-    transform: translate(50%, 0%);
   }
 }
 
@@ -403,7 +470,7 @@ img {
   width: 100%;
 }
 .landing .container h1:after {
-  color: var(--clr-accent-300);
+  color: var(--clr-accent-400);
 }
 @media (min-width: 768px) {
   .landing .container h1 {

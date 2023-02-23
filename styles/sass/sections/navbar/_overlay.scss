@@ -1,0 +1,13 @@
+.navbar {
+  .overlay {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    display: none;
+  }
+  &:has(button[aria-expanded='true']) {
+    .overlay {
+      display: block;
+    }
+  }
+}

@@ -1,10 +1,14 @@
 .about {
   .discription {
     color: var(--clr-primery-300);
-    text-align: start;
     font-size: 1.5rem;
     line-height: 1.5;
-    max-width: 600px;
-    margin: auto;
+    max-width: 400px;
+    font-size: 1.5em;
+    svg {
+      margin-bottom: -3px;
+      color: var(--clr-accent-400)
+    }
   }
+
 }

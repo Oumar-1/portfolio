@@ -1,16 +1,77 @@
 @use '../../helpers/_mixins' as *;
 .navbar {
-  .menu {
-    width: 25px;
-    cursor: pointer;
+  #nav-toggler {
     user-select: none;
     position: absolute;
     right: 10px;
     top: 10px;
-    padding: 10px;
     box-sizing: content-box;
     padding-bottom: 0;
     z-index: 3;
+    .nav-toggler-btn {
+      cursor: pointer;
+      width: 30px;
+      background-color: #0000;
+      color: #fff;
+      .navicon-s {
+        .l0 {
+          fill: none;
+          stroke: #fff;
+          stroke-linecap: round;
+          stroke-linejoin: round;
+          stroke-width: 6;
+          transition: var(--transition-speed) cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .l1 {
+          stroke-dasharray: 60 207;
+        }
+        .l2 {
+          stroke-dasharray: 60 60;
+        }
+        .l3 {
+          stroke-dasharray: 60 207;
+        }
+      }
+      .navicon-xl {
+        filter: drop-shadow(1px 1px 8px var(--bg-transparent-100));
+        .t0 {
+          transition: 600ms, fill 300ms -300ms;
+          stroke: rgba(255, 255, 255, 0.6);
+          fill: #fff0;
+        }
+        .t1 {
+          stroke-dasharray: 206;
+        }
+        .t2 {
+          stroke-dasharray: 0 206;
+          stroke-dashoffset: 1;
+        }
+      }
+      &[aria-expanded='true'] {
+        .navicon-xl {
+          .t1 {
+            stroke-dashoffset: 206;
+          }
+          .t2 {
+            stroke-dasharray: 206;
+          }
+        }
+        .navicon-s {
+          .l1 {
+            stroke-dasharray: 90 207;
+            stroke-dashoffset: -134;
+          }
+          .l2 {
+            stroke-dasharray: 1 60;
+            stroke-dashoffset: -30;
+          }
+          .l3 {
+            stroke-dasharray: 90 207;
+            stroke-dashoffset: -134;
+          }
+        }
+      }
+    }
     @include media(min-mobile) {
       width: 100%;
       padding: 0;
@@ -19,6 +80,9 @@
       left: 0;
       text-align: center;
       cursor: default;
+      .nav-toggler-btn {
+        width: 20px;
+      }
       img {
         width: 30px;
         cursor: pointer;
