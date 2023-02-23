@@ -12,74 +12,107 @@ navbar();
 about();
 showcase();
 
-function largeScreenCheck() {
-  if (window.innerWidth > breakPoints.s) return true;
-  return false;
-}
-function isElementVisible(el) {
-  const rect = el.getBoundingClientRect().top;
-  return rect + 3 <= window.innerHeight;
-}
-
 function landing() {
   const title = document.getElementById('landing-title');
-  typingAnimation(title, false , {speed: 100});
+  typingAnimation(title, false, { speed: 100 });
 }
 
 function navbar() {
-  const navLinks = document.querySelectorAll('.nav-link');
-  const navbar = document.querySelector('.navbar');
-  const menu = document.querySelector('.menu');
-  let countDown;
-  navLinks.forEach((link) => {
-    link.addEventListener('click', () =>
-      navbar.setAttribute('aria-expanded', 'false')
-    );
-  });
-  const handleMouseEnter = () => {
-    if (largeScreenCheck()) {
-      clearTimeout(countDown);
-      navbar.setAttribute('aria-expanded', 'true');
-    }
-  };
-  const handleMouseLeave = () => {
-    if (largeScreenCheck()) {
-      countDown = setTimeout(() => {
-        navbar.setAttribute('aria-expanded', 'false');
-      }, 2000);
-    }
-  };
+  const navbar = document.querySelector('#navbar');
+  const navMenu = navbar.querySelector('#nav-menu');
+  const toggler = navbar.querySelector('#nav-toggler button');
+  const overlay = navbar.querySelector('.overlay');
+  let countDownTimer;
+  for (const link of navMenu.children) {
+    const anchor = link.firstElementChild;
+    anchor.addEventListener('focus', () => {
+      clearTimer();
+      toggleMenu(true);
+    });
+    anchor.addEventListener('blur', () => {
+      setTimer(500);
+    });
+  }
 
-  const handleResize = () => {
-    menu.firstElementChild.src = `../imgs/icons/nav/menu-${
-      largeScreenCheck() ? 'xl' : 's'
-    }.svg`;
-  };
+  overlay.addEventListener('click', toggleMenu);
+  // load proper icon on the first load
+  setTogglerIcon();
 
+  // resize to change menu toggler icon
   window.addEventListener('resize', handleResize);
-  if (window.innerWidth > 768) navbar.classList.add('active');
+
+  // show menu on large screen by default
+  isLargeScreen() && toggleMenu(true);
+
+  // handle focusing on menu
   navbar.addEventListener('mouseenter', handleMouseEnter);
   navbar.addEventListener('mouseleave', handleMouseLeave);
-  menu.addEventListener('click', () => {
-    const current = navbar.getAttribute('aria-expanded');
-    navbar.setAttribute('aria-expanded', current === 'true' ? 'false' : 'true');
-  });
-  handleResize();
+  toggler.addEventListener('click', toggleMenu);
+
+  function setTimer(duration) {
+    countDownTimer = setTimeout(() => toggleMenu(false), duration || 1000);
+  }
+  function clearTimer() {
+    clearInterval(countDownTimer);
+  }
+  function handleMouseEnter() {
+    if (!isLargeScreen()) return;
+    clearTimer();
+    toggleMenu(true);
+  }
+  function handleMouseLeave() {
+    if (!isLargeScreen()) return;
+    setTimer();
+  }
+
+  function setTogglerIcon() {
+    const type = isLargeScreen() ? 'xl' : 's';
+    fetch(`../imgs/icons/nav/menu-${type}.svg`)
+      .then((res) => res.text())
+      .then((content) => {
+        toggler.innerHTML = content;
+        toggler.setAttribute('data-icon-type', type);
+      });
+  }
+  function handleResize() {
+    const current = toggler.dataset.iconType;
+    const type = isLargeScreen() ? 'xl' : 's';
+    if (current === type) return;
+    setTogglerIcon();
+  }
+
+  function toggleMenu(val) {
+    let res;
+
+    if (typeof val === 'boolean') res = val;
+    else {
+      const current = navMenu.getAttribute('aria-expanded');
+      res = current === 'true' ? false : true;
+    }
+    navMenu.setAttribute('aria-expanded', res);
+    toggler.setAttribute('aria-expanded', res);
+  }
 }
 
 function about() {
-  const skillsContainer = document.querySelector('.skills');
-  const skills = document.querySelectorAll('.skill');
-  const skillsTitle = document.querySelector('.skills-intro');
+  const skills = document.getElementById('about-skills');
+  console.log(skills);
+  const skillsContainer = skills.querySelector('#skills-container');
+  const skillsItems = skills.querySelectorAll('.skill');
+  const skillsTitle = skills.querySelector('.skills-intro');
+
   typingAnimation(
     skillsTitle,
     () => {
-      setTimeout(() => skillsTitle.classList.add('cursor-hide'), 1000);
+      skillsContainer.classList.add('active');
     },
-    { speed: 80 }
+    {
+      speed: 80,
+      cursor: { remove: false },
+    }
   );
   let delayCount = 0;
-  skills.forEach((skill) => {
+  skillsItems.forEach((skill) => {
     skill.style.transitionDelay = delayCount + 'ms';
     delayCount += 200;
   });
@@ -100,32 +133,37 @@ function createElement(type, content = null, attrs = {}) {
 
 // @params $element $callback
 // $element a node element
+// callback
 function typingAnimation(element, callback, props = {}) {
   if (!element || element.nodeType !== Node.ELEMENT_NODE) {
     return console.error(new Error('only accept node elements'));
   }
+  const content = element.textContent.trim();
+  element.textContent = '';
 
-  props = {
-    delay: props.delay || 1000, // typing delay before start
-    speed: props.speed || 50, // speed of typing
-  };
-
+  let cursor;
   if (props.cursor === false) {
-    props.cursor = {};
+    cursor = {};
   } else
-    props.cursor = {
+    cursor = {
       enable: props.cursor?.enable ?? true,
       remove: props.cursor?.remove ?? true,
       vanishDelay: props.cursor?.vanishDelay ?? 1000,
     };
 
-  function insertText(finishtyping) {
+  props = {
+    delay: props.delay || 1000, // typing delay before start
+    speed: props.speed || 50, // speed of typing
+    cursor,
+  };
+
+  function insertText(insertCallback) {
     let count = 0;
     const interval = setInterval(() => {
       element.textContent += content[count++];
       if (count >= content.length) {
         clearInterval(interval);
-        finishtyping();
+        insertCallback();
       }
     }, props.speed);
   }
@@ -135,17 +173,19 @@ function typingAnimation(element, callback, props = {}) {
     element.classList.add('typing-cursor');
     return true;
   }
+  function callMainCallback() {
+    if (typeof callback === 'function') return callback();
+    else return false;
+  }
   function removeCursor() {
-    if (!props.cursor.remove) return false;
-    setTimeout(() => {
-      element.classList.remove('typing-cursor');
-    }, props.cursor.vanishDelay);
-    return true;
+    if (props.cursor.remove) {
+      setTimeout(() => {
+        element.classList.remove('typing-cursor');
+        callMainCallback();
+      }, props.cursor.vanishDelay);
+    } else callMainCallback();
   }
 
-  const content = element.textContent.trim();
-  element.textContent = '';
-  addCursor(element);
   let isTyping = false; // to avoid multiple typing
   function eventHandler() {
     if (isTyping) return;
@@ -160,9 +200,26 @@ function typingAnimation(element, callback, props = {}) {
     }
   }
 
+  addCursor(element);
   window.addEventListener('load', eventHandler, { once: true });
   window.addEventListener('scroll', eventHandler);
 }
 function appendElements(target, ...elements) {
   elements.forEach((element) => target.appendChild(element));
+}
+function isLargeScreen() {
+  if (window.innerWidth > breakPoints.s) return true;
+  return false;
+}
+function isElementVisible(el, width, height) {
+  const y = el.getBoundingClientRect().top;
+  const x = el.getBoundingClientRect().left;
+  const w = width || el.offsetWidth;
+  const h = height || el.offsetHeight;
+  return (
+    y <= window.innerHeight &&
+    y + h >= 0 &&
+    x >= 0 &&
+    x + w <= window.innerWidth
+  );
 }
