@@ -1,6 +1,11 @@
-<svg width="20" height="20" viewBox="2 0 20 20" xmlns="http://www.w3.org/2000/svg" fill="none">
-    <g stroke="#fff" data-name="20x20/arrow-back--grey" transform="rotate(-90 12 12)">
-        <path d="m13.343 16.814-4.657-4.657L13.343 7.5" stroke-miterlimit="10" stroke-width="1.5" data-name="Group 2"/>
-    </g>
+<svg xmlns="http://www.w3.org/2000/svg" stroke-linecap="round" stroke-linejoin="round"
+  stroke-width="5"
+  class="navicon-xl" viewBox="-3 -3 80 70">
+  <path
+    d="M3.32982 3.26655 38.041 60.0958 71.1759 3.27119c.4868-.83481-.051-1.93827-.9447-1.93827H4.2772c-.89139 0-1.42975 1.09856-.94738 1.93363Z"
+    class="t0 t1" />
+  <path
+    d="M37.4681 2.36875 69.9242 61H3.12843c-.89613 0-1.43347-1.1088-.94187-1.9433L35.5846 2.36875c.4448-.75513 1.4386-.75513 1.8835 0Z"
+    class="t0 t2" />
 </svg>
 
