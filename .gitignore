@@ -1,0 +1,7 @@
+/designs-I-like/
+*.vscode
+*Note
+test*
+*/download/*
+package.json
+/node_modules 
