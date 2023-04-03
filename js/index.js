@@ -1,8 +1,3 @@
-try {
-  particlesJS.load('particles-js', './js/particles.json');
-} catch {
-  console.error('particles did not load');
-}
 const breakPoints = {
   s: 767,
   xl: 1200,
@@ -95,16 +90,17 @@ function navbar() {
 }
 
 function about() {
-  const skills = document.getElementById('about-skills');
-  console.log(skills);
-  const skillsContainer = skills.querySelector('#skills-container');
-  const skillsItems = skills.querySelectorAll('.skill');
-  const skillsTitle = skills.querySelector('.skills-intro');
+  const skillsSection = document.getElementById('about-skills');
+  const skillsTitle = skillsSection.querySelector('.skills-intro');
+  const wraper = skillsSection.querySelector('#skills-container');
+  const skills = skillsSection.querySelectorAll('.skill');
+
+  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
   typingAnimation(
     skillsTitle,
     () => {
-      skillsContainer.classList.add('active');
+      wraper.classList.add('active');
     },
     {
       speed: 80,
@@ -112,9 +108,28 @@ function about() {
     }
   );
   let delayCount = 0;
-  skillsItems.forEach((skill) => {
+  skills.forEach((skill) => {
     skill.style.transitionDelay = delayCount + 'ms';
     delayCount += 200;
+    const title = skill.querySelector('.title');
+    const text = title.textContent;
+    let interval;
+    skill.addEventListener('mouseenter', () => {
+      let charCount = 0;
+      clearInterval(interval);
+      interval = setInterval(() => {
+        if (charCount >= text.length) clearInterval(interval);
+        title.textContent = text
+          .split('')
+          .map((e, i) => {
+            if (i < charCount) return e;
+            return chars[Math.floor(Math.random() * chars.length)];
+          })
+          .join('');
+        charCount += 1 / 3;
+        console.log(charCount)
+      }, 30);
+    });
   });
   /* activeSkill(); */
 }
