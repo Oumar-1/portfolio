@@ -1,147 +1,154 @@
 <!DOCTYPE html>
 
 <html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="Oumar Moulay" />
+    <meta name="description" content="Oumar's Portfolio Website" />
+    <title>My World</title>
+    <!-- google fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,800;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- style sheet -->
+    <link rel="stylesheet" href="styles/css/main.css" />
+    <link rel="icon" type="image/x-icon" href="/imgs/icons/favicon.ico" />
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="author" content="Oumar Moulay" />
-  <meta name="description" content="Oumar's Portfolio Website" />
-  <title>My World</title>
-  <!-- google fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,800;1,700&display=swap"
-    rel="stylesheet" />
-  <!-- style sheet -->
-  <link rel="stylesheet" href="styles/css/main.css" />
-  <link rel="icon" type="image/x-icon" href="/imgs/icons/favicon.ico" />
-</head>
-
-<body>
-  <!-- navigation bar -->
-  <nav class="navbar" id="navbar">
-    <ul class="nav-links" id="nav-menu">
-      <li>
-        <a href="#home" class="nav-link">Home</a>
-      </li>
-
-      <li>
-        <a href="#about" class="nav-link">About</a>
-      </li>
-      <li>
-        <a href="#showcase" class="nav-link">showcase</a>
-      </li>
-      <li>
-        <a href="#contact" class="nav-link">Contact</a>
-      </li>
-    </ul>
-    <div id="nav-toggler" class="menu" aria-controls="nav-menu">
-      <button class="nav-toggler-btn" aria-label="Toggle navigatio menu"></button>
-    </div>
-    <div class="overlay"></div>
-  </nav>
-  <!-- Landing -->
-  <header class="landing" id="home">
-    <!-- particles canvas -->
-    <div id="particles-js"></div>
-
-    <div class="container">
-      <div class="landing-content">
-        <h1 id="landing-title">Welcome To my World</h1>
+  <body>
+    <!-- navigation bar -->
+    <nav class="navbar" id="navbar">
+      <div id="nav-toggler" class="menu" aria-controls="nav-menu">
+        <button
+          class="nav-toggler-btn"
+          aria-label="Toggle navigatio menu"
+        ></button>
       </div>
-    </div>
-  </header>
-  <!-- about me -->
-  <section class="about" id="about">
-    <div class="container">
-      <div class="about-me">
-        <div class="blob">
-          <div class="overlay"></div>
-          <picture>
-            <source srcset="imgs/personal/author_xl.webp" media="(min-width: 900px)" />
-            <img src="imgs/personal/author_s.webp" alt="the website owner image" />
-          </picture>
-        </div>
-        <p class="discription">
-          Hi, I'm Oumar. a self-taught junior frontend developer thank you for
-          visiting my portfolio and here are a few of my Skills
-          <svg height="20" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path
-              d="m18.78 11.374-4.78-6a1 1 0 0 0-1.41-.15 1 1 0 0 0-.15 1.41l4.27 5.37-4.48 5.37a1.001 1.001 0 0 0 .13 1.41 1 1 0 0 0 .64.22 1 1 0 0 0 .77-.36l5-6a1 1 0 0 0 .01-1.27Z">
-            </path>
-            <path
-              d="M7 5.369a1.022 1.022 0 0 0-1.61 1.26l4.32 5.37-4.48 5.36a1 1 0 0 0 1.195 1.546 1 1 0 0 0 .345-.266l5-6a1 1 0 0 0 0-1.27l-4.77-6Z">
-            </path>
-          </svg>
-        </p>
-      </div>
-      <div class="skills" id="about-skills">
-        <h4 data-typing-animation class="skills-intro">
-          My skillset is constantly evolving, but here are a few highlights:
-        </h4>
+      <ul class="nav-links" id="nav-menu">
+        <li>
+          <a href="#home" class="nav-link">Home</a>
+        </li>
 
-        <div id="skills-container">
-          <div class="skill">
-            <div class="skill-content">
-              <div class="img-container">
-                <img src="imgs/icons//about/html.svg" alt="HTML Icon" />
-              </div>
-              <p class="title">HTML</p>
-            </div>
-          </div>
-          <div class="skill">
-            <div class="skill-content">
-              <div class="img-container">
-                <img src="imgs/icons//about/css.svg" alt="CSS Icon" />
-              </div>
-              <p class="title">CSS</p>
-            </div>
-          </div>
-          <div class="skill">
-            <div class="skill-content">
-              <div class="img-container">
-                <img src="imgs/icons//about/javascript.svg" alt="JAVASCRIPT Icon" />
-              </div>
-              <p class="title">JAVASCRIPT</p>
-            </div>
-          </div>
-          <div class="skill">
-            <div class="skill-content">
-              <div class="img-container">
-                <img src="imgs/icons//about/sass.svg" alt="SASS Icon" />
-              </div>
-              <p class="title">SASS</p>
-            </div>
-          </div>
-          <div class="skill">
-            <div class="skill-content">
-              <div class="img-container">
-                <img src="imgs/icons//about/bootstrap.svg" alt="BootStrap Icon" />
-              </div>
-              <p class="title">BootStrap</p>
-            </div>
-          </div>
-          <div class="skill">
-            <div class="skill-content">
-              <div class="img-container">
-                <img src="imgs/icons//about/react.svg" alt="React Icon" />
-              </div>
-              <p class="title">React</p>
-            </div>
-          </div>
+        <li>
+          <a href="#about" class="nav-link">About</a>
+        </li>
+        <li>
+          <a href="#showcase" class="nav-link">showcase</a>
+        </li>
+        <li>
+          <a href="#contact" class="nav-link">Contact</a>
+        </li>
+      </ul>
+      <div class="overlay"></div>
+    </nav>
+    <!-- Landing -->
+    <header class="landing" id="home">
+      <!-- particles canvas -->
+      <!-- <div id="particles-js"></div> -->
+      <div class="container">
+        <div class="landing-content">
+          <h1 id="landing-title">Welcome To my World</h1>
         </div>
       </div>
-    </div>
-  </section>
-  <section class="showcase container" id="showcase">
-    <p class="sect-header">
-      Welcome to my showcase! I am excited to share with you some of my recent
-      projects.
-    </p>
-    <div class="container"></div>
-  </section>
-  <script defer src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-  <script defer src="./js/index.js"></script>
-</body>
+    </header>
+    <!-- about me -->
+    <section class="about" id="about">
+      <div class="container">
+        <div class="about-me">
+          <div class="blob">
+            <div class="overlay"></div>
+            <picture>
+              <source
+                srcset="imgs/personal/author_xl.webp"
+                media="(min-width: 900px)"
+              />
+              <img
+                src="imgs/personal/author_s.webp"
+                alt="the website owner image"
+              />
+            </picture>
+          </div>
+          <p class="discription">
+            Hello, I'm Oumar, a passionate self-taught frontend developer. I
+            have a keen eye for design and a strong desire to create stunning
+            and functional websites. My focus is on creating user-friendly
+            interfaces and exceptional user experiences.
+          </p>
+        </div>
+        <div class="skills" id="about-skills">
+          <h4 data-typing-animation class="skills-intro">
+            Here are a few highlights:
+          </h4>
 
+          <div id="skills-container">
+            <div class="skill">
+              <div class="skill-content">
+                <div class="img-container">
+                  <img src="imgs/icons//about/html.svg" alt="HTML Icon" />
+                </div>
+                <p class="title">HTML</p>
+              </div>
+            </div>
+            <div class="skill">
+              <div class="skill-content">
+                <div class="img-container">
+                  <img src="imgs/icons//about/css.svg" alt="CSS Icon" />
+                </div>
+                <p class="title">CSS</p>
+              </div>
+            </div>
+            <div class="skill">
+              <div class="skill-content">
+                <div class="img-container">
+                  <img
+                    src="imgs/icons//about/javascript.svg"
+                    alt="JAVASCRIPT Icon"
+                  />
+                </div>
+                <p class="title">JAVASCRIPT</p>
+              </div>
+            </div>
+            <div class="skill">
+              <div class="skill-content">
+                <div class="img-container">
+                  <img src="imgs/icons//about/sass.svg" alt="SASS Icon" />
+                </div>
+                <p class="title">SASS</p>
+              </div>
+            </div>
+            <div class="skill">
+              <div class="skill-content">
+                <div class="img-container">
+                  <img
+                    src="imgs/icons//about/bootstrap.svg"
+                    alt="BootStrap Icon"
+                  />
+                </div>
+                <p class="title">BootStrap</p>
+              </div>
+            </div>
+            <div class="skill">
+              <div class="skill-content">
+                <div class="img-container">
+                  <img src="imgs/icons//about/react.svg" alt="React Icon" />
+                </div>
+                <p class="title">React</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="showcase container" id="showcase">
+      <p class="sect-header">
+        Welcome to my showcase! I am excited to share with you some of my recent
+        projects.
+      </p>
+      <div class="container"></div>
+    </section>
+    <script defer src="./js/index.js"></script>
+  </body>
 </html>
