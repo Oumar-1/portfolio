@@ -5,6 +5,9 @@
       transform: translateX(0%);
     }
     --border-rad: 10px 0 0 10px;
+    position: absolute;
+    right: 0;
+    top: 0;
     display: flex;
     transform: translateX(100%);
     flex-direction: column;

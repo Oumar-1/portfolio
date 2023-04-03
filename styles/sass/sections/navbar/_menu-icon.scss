@@ -2,12 +2,10 @@
 .navbar {
   #nav-toggler {
     user-select: none;
-    position: absolute;
-    right: 10px;
-    top: 10px;
+    position: relative;
     box-sizing: content-box;
-    padding-bottom: 0;
-    z-index: 3;
+    z-index: 5;
+    margin-inline: 10px;
     .nav-toggler-btn {
       cursor: pointer;
       width: 30px;
